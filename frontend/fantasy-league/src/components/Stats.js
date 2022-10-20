@@ -13,23 +13,17 @@ const Stats = ({data}) => {
           </tr>
         )
     })
-    // console.log(playerNames)
+  
 
 
     console.log(r);
 
-    // const table = {
-    //     columns : ["name" , "goals"],
-    //     rows : [playerNames]
-    // }
-
-    // const rows = [playerNames]
+ 
 
     
 
     return (
-        // data.elements.map((player, index) => 
-        //      <p> {player.first_name} {player.second_name} {player.goals_scored}</p>)
+        
         
         <div className="stat_table">
         <table>
@@ -37,7 +31,14 @@ const Stats = ({data}) => {
             <th>Name</th>
             <th>goals scored</th>
             </tr>
-            
+            {playerNames}
+        </table>
+
+        <table>
+            <tr>
+            <th>Name</th>
+            <th>goals scored</th>
+            </tr>
             {playerNames}
         </table>
 

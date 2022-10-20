@@ -10,24 +10,24 @@ const HomeContainer = () => {
 
     const [fixtures,setFixtures] = useState([])
     // contains gameweeks, teams, players
-    const [footballData, setFootballData] = useState(data)
+    const [footballData, setFootballData] = useState([])
 
-    // const fetchFixtures = async () => {
-    //     const response = await fetch("https://fantasy.premierleague.com/api/fixtures/")
-    //     const FixturesData = await response.json()
-    //     setFixtures(FixturesData)
+    const fetchFixtures = async () => {
+        const response = await fetch("http://localhost:8080/data/fixtures")
+        const FixturesData = await response.json()
+        setFixtures(FixturesData)
 
-    // }
+    }
 
-    // const fetchFootballData = async()=> {
-    //     const response = await fetch("https://fantasy.premierleague.com/api/bootstrap-static/")
-    //     const footballStats = await response.json()
-    //     setFootballData(footballStats)
-    // }
+    const fetchFootballData = async()=> {
+        const response = await fetch("http://localhost:8080/data/players")
+        const footballStats = await response.json()
+        setFootballData(footballStats)
+    }
 
     useEffect(()=>{
-        // fetchFixtures()
-        // fetchFootballData()
+        fetchFixtures()
+        fetchFootballData()
     },[])
 
     return (
@@ -53,7 +53,7 @@ const HomeContainer = () => {
                     <LeaderBoard/>
                     }/>
                      <Route path="/stats" element= {
-                    <Stats data = {data}/>
+                    <Stats data = {footballData}/>
                     }/>
                     
                 </Routes>
