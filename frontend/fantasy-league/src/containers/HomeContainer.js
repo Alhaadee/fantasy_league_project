@@ -40,7 +40,7 @@ const HomeContainer = () => {
             <header>
                 <h1>Bright Fantasy League</h1>
                 <nav>
-                    <h3><Link to="/fixtures">Fixtures</Link></h3>
+                    <h3><Link to="/">Fixtures</Link></h3>
                     <h3><Link to="/team">Team</Link></h3>
                     <h3><Link to="/stats">Stats</Link></h3>
                     <h3><Link to="/leaderBoard">LeaderBoard</Link></h3>
@@ -48,8 +48,8 @@ const HomeContainer = () => {
             </header>
 
                 <Routes> 
-                    <Route path="/fixtures" element= {
-                    <Fixtures fixtures={fixtures}/>
+                    <Route path="/" element= {
+                    <Fixtures fixtures={fixtures} data={footballData}/>
                     }/>
                     <Route path="/team" element= {
                     <Team/>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Fixtures({fixtures}) {
+export default function Fixtures({fixtures, data}) {
   
   const teamNames = {
     1:"Arsenal",
@@ -24,19 +24,32 @@ export default function Fixtures({fixtures}) {
     19:"West Ham",
     20:"Wolverhampton"
   }
+
+
   
   const fixturesList = fixtures.map((fixture)=>{
     if (fixture.event === 12){
       return(
-        <div className='fixture_card'>
-        <h3>{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
+        <div key={fixture.id} className='fixture_card'>
+        <h3 >{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
         {fixture.finished ?  <p>{fixture.team_h_score}:{fixture.team_a_score}</p> : <p>Kick Off time: {fixture.kickoff_time}</p>}
         </div>
-    
         )
     }
    
   })
+
+  const goalsScored = fixtures.map((fixture)=>{
+    if (fixture.stats !== [] && fixture.stats[0].a !== []){
+      fixture.stats[0].a.map((scored)=>{
+        return (
+          <p>{scored.element},{scored.value}</p>
+        )
+      })
+    }
+  })
+ 
+  
 
   return (
     <div className='fixtures_component'>
