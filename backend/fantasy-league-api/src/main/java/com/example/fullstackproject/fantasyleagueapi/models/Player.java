@@ -2,32 +2,33 @@ package com.example.fullstackproject.fantasyleagueapi.models;
 
 public class Player {
 
-        private long id;
+    private long id;
 
-        private String name;
+    private String name;
 
-        private String position;
+    private String position;
 
-        private float transferValue;
+    private float transferValue;
 
-        private int totalPoints;
+    private int totalPoints;
 
-        private int gameWeekPoints;
+    private int gameWeekPoints;
 
-        private String playerImage;
+    private String playerImage;
 
-        public Player(String name, String position, float transferValue, int totalPoints, int gameWeekPoints, String playerImage) {
-            this.name = name;
-            this.position = position;
-            this.transferValue = transferValue;
-            this.totalPoints = totalPoints;
-            this.gameWeekPoints = gameWeekPoints;
-            this.playerImage = playerImage;
-        }
+    public Player(String name, String position, float transferValue, int totalPoints, int gameWeekPoints, String playerImage) {
+        this.name = name;
+        this.position = position;
+        this.transferValue = transferValue;
+        this.totalPoints = totalPoints;
+        this.gameWeekPoints = gameWeekPoints;
+        this.playerImage = playerImage;
+    }
 
-        public Player () {
+    public Player () {
 
-        }
+    }
+
 
     public long getId() {
         return id;
