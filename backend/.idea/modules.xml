@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/backend.iml" filepath="$PROJECT_DIR$/.idea/backend.iml" />
+<<<<<<< HEAD
+=======
+      <module fileurl="file://$PROJECT_DIR$/fantasy-league-api/fantasy-league-api.iml" filepath="$PROJECT_DIR$/fantasy-league-api/fantasy-league-api.iml" />
+>>>>>>> 82892dda445d0a9bca150f3984d3d1d49dea7cd7
     </modules>
   </component>
 </project>
