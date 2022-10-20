@@ -1,5 +1,7 @@
 package com.example.fullstackproject.fantasyleagueapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,7 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id",nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "player_id",nullable = false)}
     )
+    @JsonIgnoreProperties({"users"})
     private List<Player> players;
 
     @Column
@@ -31,12 +34,11 @@ public class User {
     @Column
     private float transferBudget;
 
-    public User(String userName, String teamName, long userId, int overallScore, float transferBudget ){
+    public User(String userName, String teamName){
         this.userName = userName;
-        this. teamName = teamName;
-        this.userId = userId;
-        this.overallScore = overallScore;
-        this. transferBudget = transferBudget;
+        this.teamName = teamName;
+        this.overallScore = 0;
+        this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
 
     }
@@ -95,7 +97,7 @@ public class User {
     public void addPlayerToUser(Player player){
         this.players.add(player);
     }
-    
+
     public void removePlayerFromUser(Player player){
         this.players.remove(player);
     }

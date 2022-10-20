@@ -29,8 +29,6 @@ public class UserController {
     return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-
-
     @PutMapping("/addPlayer")
     public ResponseEntity<User> addPlayerToUser(
             @RequestParam Long userId,
