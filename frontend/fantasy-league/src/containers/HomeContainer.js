@@ -4,19 +4,25 @@ import Fixtures from "../components/Fixtures";
 import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
+import fixturesData from "../fixtures.json"
 
 const HomeContainer = () => {
 
-    const [fixtures,setFixtures] = useState([])
+    const [fixtures,setFixtures] = useState(fixturesData)
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
+    
 
-    const fetchFixtures = async () => {
-        const response = await fetch("https://fantasy.premierleague.com/api/fixtures/")
-        const FixturesData = await response.json()
-        setFixtures(FixturesData)
+    // const fetchFixtures = async () => {
+    //     const response = await fetch("https://fantasy.premierleague.com/api/fixtures/",{
+    //         headers: {
+    //             "Content-Type":"application/json"
+    //         }
+    //     })
+    //     const FixturesData = await response.json()
+    //     setFixtures(FixturesData)
 
-    }
+    // }
 
     const fetchFootballData = async()=> {
         const response = await fetch("https://fantasy.premierleague.com/api/bootstrap-static/")
@@ -25,8 +31,8 @@ const HomeContainer = () => {
     }
 
     useEffect(()=>{
-        fetchFixtures()
-        fetchFootballData()
+        // fetchFixtures()
+        // fetchFootballData()
     },[])
 
     return (
@@ -43,7 +49,7 @@ const HomeContainer = () => {
 
                 <Routes> 
                     <Route path="/fixtures" element= {
-                    <Fixtures/>
+                    <Fixtures fixtures={fixtures}/>
                     }/>
                     <Route path="/team" element= {
                     <Team/>
