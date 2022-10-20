@@ -6,3 +6,24 @@ nav {
 h1 {
   text-align: center;
 }
+
+.fixture_card {
+  background-color: beige;
+  border-radius: 5px;
+  text-align: center;
+  
+}
+
+h3 {
+  padding: 5px 0 0 0;
+}
+
+.fixture_card p {
+  margin: 0px;
+  padding-bottom: 5px;
+}
+
+.fixtures_component {
+  display: table;
+  margin: 0px auto;
+}

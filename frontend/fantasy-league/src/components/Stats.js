@@ -1,3 +1,5 @@
+
+
 import "./Stats.css"
 // import { MDBDatatable } from 'mdb-react-ui-kit';
 const Stats = ({data}) => {
@@ -37,7 +39,7 @@ const Stats = ({data}) => {
         <table>
             <tr>
             <th>Name</th>
-            <th>goals scored</th>
+            <th>Assists</th>
             </tr>
             {playerNames}
         </table>
