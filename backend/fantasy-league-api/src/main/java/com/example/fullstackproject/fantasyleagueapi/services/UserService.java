@@ -1,6 +1,8 @@
 package com.example.fullstackproject.fantasyleagueapi.services;
 
+import com.example.fullstackproject.fantasyleagueapi.models.Player;
 import com.example.fullstackproject.fantasyleagueapi.models.User;
+import com.example.fullstackproject.fantasyleagueapi.repositories.PlayerRepository;
 import com.example.fullstackproject.fantasyleagueapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
