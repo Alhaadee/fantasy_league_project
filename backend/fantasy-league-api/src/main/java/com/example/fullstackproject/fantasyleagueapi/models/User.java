@@ -1,6 +1,7 @@
 package com.example.fullstackproject.fantasyleagueapi.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="users")
@@ -36,6 +37,7 @@ public class User {
         this.userId = userId;
         this.overallScore = overallScore;
         this. transferBudget = transferBudget;
+        this.players = new ArrayList<>();
 
     }
 
@@ -89,6 +91,9 @@ public class User {
 
     public User(){
 
+    }
+    public void addPlayerToUser(Player player){
+        this.players.add(player);
     }
 
 
