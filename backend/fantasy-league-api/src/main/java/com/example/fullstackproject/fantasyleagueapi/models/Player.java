@@ -1,19 +1,37 @@
 package com.example.fullstackproject.fantasyleagueapi.models;
 
+import javax.persistence.*;
+
+@Entity(name = "players")
 public class Player {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+    @ManyToMany //  might need an extra look
+    @JoinTable(
+            name = "users_players",
+            joinColumns = {@JoinColumn(name = "player_id",nullable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "user_id",nullable = false)}
+    )
+    @Column
     private String name;
 
+    @Column
     private String position;
 
+    @Column
     private float transferValue;
 
+    @Column
     private int totalPoints;
 
+    @Column
     private int gameWeekPoints;
 
+    @Column
     private String playerImage;
 
     public Player(String name, String position, float transferValue, int totalPoints, int gameWeekPoints, String playerImage) {
