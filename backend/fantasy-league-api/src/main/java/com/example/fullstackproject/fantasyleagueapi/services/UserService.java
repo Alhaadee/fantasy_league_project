@@ -26,6 +26,7 @@ public class UserService {
     }
 
     public User addNewUser(User user){
+        user.setTransferBudget(100.00F);
         userRepository.save(user);
         return user;
     }
