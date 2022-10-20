@@ -40,8 +40,15 @@ public class UserService {
         userRepository.save(targetUser);
     }
 
-//    public void removePlayerFromUser(Long playerId, Long userId){
-//        User targetUser = userRepository.findById(userId).get();
-//        Player targetPlayer = playerRepository. findById(playerId).get();
-//    }
+    public void removePlayerFromUser(Long playerId, Long userId){
+        User targetUser = userRepository.findById(userId).get();
+        Player targetPlayer = playerRepository. findById(playerId).get();
+        targetUser.removePlayerFromUser(targetPlayer);
+        userRepository.save(targetUser);
+    }
+    
+    public User findUserById(Long userId){
+        User targetUser = userRepository.findById(userId).get();
+        return targetUser;
+    }
 }

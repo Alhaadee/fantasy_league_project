@@ -1,6 +1,10 @@
 package com.example.fullstackproject.fantasyleagueapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "players")
 public class Player {
@@ -16,6 +20,9 @@ public class Player {
             joinColumns = {@JoinColumn(name = "player_id",nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "user_id",nullable = false)}
     )
+    @JsonIgnoreProperties({"players"})
+    private List<User> users;
+
     @Column
     private String name;
 
@@ -34,13 +41,14 @@ public class Player {
     @Column
     private String playerImage;
 
-    public Player(String name, String position, float transferValue, int totalPoints, int gameWeekPoints, String playerImage) {
+    public Player(String name, String position, float transferValue, String playerImage) {
         this.name = name;
         this.position = position;
         this.transferValue = transferValue;
-        this.totalPoints = totalPoints;
-        this.gameWeekPoints = gameWeekPoints;
+        this.totalPoints = 0;
+        this.gameWeekPoints = 0;
         this.playerImage = playerImage;
+        this.users = new ArrayList<>();
     }
 
     public Player () {
@@ -102,5 +110,13 @@ public class Player {
 
     public void setPlayerImage(String playerImage) {
         this.playerImage = playerImage;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

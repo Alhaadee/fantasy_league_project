@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/players")
@@ -35,6 +37,15 @@ public class PlayerController {
         Player player = playerService.getPlayerById(id);
         return new ResponseEntity<>(player , HttpStatus.OK);
     }
+
+//    @GetMapping(value = "/get-player")
+//    public Object getPlayer(){
+//        String url = "https://fantasy.premierleague.com/api/bootstrap-static/";
+//        RestTemplate restTemplate = new RestTemplate();
+//        Object result = restTemplate.getForObject(url,Object.class);
+//        return result;
+//
+//    }
 
 
 
