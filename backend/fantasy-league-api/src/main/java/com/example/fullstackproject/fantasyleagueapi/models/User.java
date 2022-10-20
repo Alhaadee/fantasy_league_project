@@ -95,6 +95,10 @@ public class User {
     public void addPlayerToUser(Player player){
         this.players.add(player);
     }
+    
+    public void removePlayerFromUser(Player player){
+        this.players.remove(player);
+    }
 
 
 
