@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function FixturesComponent() {
+export default function Fixtures() {
   return (
     <div>FixturesComponent</div>
   )
