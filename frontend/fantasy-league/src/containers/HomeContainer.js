@@ -8,31 +8,31 @@ import fixturesData from "../fixtures.json"
 
 const HomeContainer = () => {
 
-    const [fixtures,setFixtures] = useState(fixturesData)
+    const [fixtures,setFixtures] = useState([])
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
     
 
-    // const fetchFixtures = async () => {
-    //     const response = await fetch("https://fantasy.premierleague.com/api/fixtures/",{
-    //         headers: {
-    //             "Content-Type":"application/json"
-    //         }
-    //     })
-    //     const FixturesData = await response.json()
-    //     setFixtures(FixturesData)
+    const fetchFixtures = async () => {
+        const response = await fetch("http://localhost:8080/data/fixtures",{
+            headers: {
+                "Content-Type":"application/json"
+            }
+        })
+        const FixturesData = await response.json()
+        setFixtures(FixturesData)
 
-    // }
+    }
 
     const fetchFootballData = async()=> {
-        const response = await fetch("https://fantasy.premierleague.com/api/bootstrap-static/")
+        const response = await fetch("http://localhost:8080/data/players")
         const footballStats = await response.json()
         setFootballData(footballStats)
     }
 
     useEffect(()=>{
-        // fetchFixtures()
-        // fetchFootballData()
+        fetchFixtures()
+        fetchFootballData()
     },[])
 
     return (
