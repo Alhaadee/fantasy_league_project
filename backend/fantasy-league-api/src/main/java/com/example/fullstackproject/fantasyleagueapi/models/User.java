@@ -9,6 +9,7 @@ import java.util.List;
 @Entity(name="users")
 public class User {
 
+
     @Column
     private String userName;
 
@@ -32,15 +33,18 @@ public class User {
     private int overallScore;
 
     @Column
+    private int gameWeekScore;
+
+    @Column
     private float transferBudget;
 
     public User(String userName, String teamName){
         this.userName = userName;
         this.teamName = teamName;
         this.overallScore = 0;
+        this.gameWeekScore = 0;
         this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
-
     }
 
     public String getUserName() {
@@ -81,6 +85,14 @@ public class User {
 
     public void setOverallScore(int overallScore) {
         this.overallScore = overallScore;
+    }
+
+    public int getGWScore() {
+        return gameWeekScore;
+    }
+
+    public void setGWScore(int GWScore) {
+        this.gameWeekScore = GWScore;
     }
 
     public float getTransferBudget() {

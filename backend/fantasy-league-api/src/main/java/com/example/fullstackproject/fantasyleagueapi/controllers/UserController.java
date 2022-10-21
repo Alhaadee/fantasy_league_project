@@ -23,7 +23,7 @@ public class UserController {
        return new ResponseEntity<>(users,HttpStatus.OK);
    }
 
-    @PostMapping(value = "/{userId}/users")
+    @PostMapping
     public ResponseEntity<User> addNewUser(@RequestBody User user){
     User newUser = userService.addNewUser(user);
     return new ResponseEntity<>(newUser, HttpStatus.CREATED);
@@ -37,6 +37,16 @@ public class UserController {
         userService.addPlayerToUser(playerId,userId);
         User targetUser = userService.findUserById(userId);
         return new ResponseEntity<>(targetUser, HttpStatus.OK);
+    }
+
+    @PutMapping("/removePlayer")
+    public ResponseEntity<User> removePlayerFromUser(
+            @RequestParam Long userId,
+            @RequestParam Long playerId
+    ){
+       userService.removePlayerFromUser(playerId,userId);
+       User targetUser = userService.findUserById(userId);
+       return new ResponseEntity<>(targetUser,HttpStatus.OK);
     }
 
 }

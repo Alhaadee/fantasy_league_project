@@ -7,6 +7,7 @@ import com.example.fullstackproject.fantasyleagueapi.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,6 +26,7 @@ public class UserService {
     }
 
     public User addNewUser(User user){
+        user.setTransferBudget(100.00F);
         userRepository.save(user);
         return user;
     }
@@ -36,14 +38,20 @@ public class UserService {
     public void addPlayerToUser(Long playerId,Long userId){
         User targetUser = userRepository.findById(userId).get();
         Player targetPlayer = playerRepository.findById(playerId).get();
-        targetUser.addPlayerToUser(targetPlayer);
+        List<Player> playerList =  targetUser.getPlayers();
+        playerList.add(targetPlayer);
+        targetUser.setPlayers(playerList);
+        updateTransferBudget(userId);
         userRepository.save(targetUser);
     }
 
     public void removePlayerFromUser(Long playerId, Long userId){
         User targetUser = userRepository.findById(userId).get();
         Player targetPlayer = playerRepository. findById(playerId).get();
-        targetUser.removePlayerFromUser(targetPlayer);
+        List<Player> playerList =  targetUser.getPlayers();
+        playerList.remove(targetPlayer);
+        targetUser.setPlayers(playerList);
+        updateTransferBudget(userId);
         userRepository.save(targetUser);
     }
     
@@ -51,4 +59,15 @@ public class UserService {
         User targetUser = userRepository.findById(userId).get();
         return targetUser;
     }
+
+    public void updateTransferBudget(Long userId){
+        float spentBudget = 0;
+        User targetUser = userRepository.findById(userId).get();
+        for (Player player:targetUser.getPlayers()){
+            spentBudget += player.getTransferValue();
+        }
+        float currentBudget = targetUser.getTransferBudget();
+        targetUser.setTransferBudget(currentBudget-spentBudget);
+    }
+
 }

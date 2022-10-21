@@ -5,11 +5,17 @@ import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
 
+import data from "../footballData.json"
+
+import fixturesData from "../fixtures.json"
+
+
 const HomeContainer = () => {
 
     const [fixtures,setFixtures] = useState([])
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
+    const [users , setUsers] = useState([])
     const [loading,setLoading] = useState(true)
     const [playerNames, setPlayerNames] = useState ({})
     
@@ -20,8 +26,8 @@ const HomeContainer = () => {
             headers: {
                 "Content-Type":"application/json"
             }
-        }
-        )
+        })
+
         const FixturesData = await response.json()
         setFixtures(FixturesData)
 
@@ -34,9 +40,18 @@ const HomeContainer = () => {
         setLoading(false)
     }
 
+
+
+    const fetchUsers = async()=> {
+        const response = await fetch("http://localhost:8080/user")
+        const JSONuser = await response.json()
+        setUsers(JSONuser)
+    }
+
     useEffect(()=>{
         fetchFixtures()
         fetchFootballData()
+        fetchUsers()
     },[])
     
     useEffect(()=>{
@@ -97,13 +112,13 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team/>
+                    <Team users = {users}/>
                     }/>
                     <Route path="/leaderboard" element= {
-                    <LeaderBoard/>
+                    <LeaderBoard users ={users}/>
                     }/>
                      <Route path="/stats" element= {
-                    <Stats/>
+                    <Stats data = {footballData}/>
                     }/>
                     
                 </Routes>
