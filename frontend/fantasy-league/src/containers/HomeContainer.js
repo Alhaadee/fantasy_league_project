@@ -11,6 +11,8 @@ const HomeContainer = () => {
     const [fixtures,setFixtures] = useState([])
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
+
+    const [users,setUsers] = useState([])
     
 
     const fetchFixtures = async () => {
@@ -30,9 +32,16 @@ const HomeContainer = () => {
         setFootballData(footballStats)
     }
 
+    const fetchUserData = async()=> {
+        const response = await fetch("http://localhost:8080/user");
+        const userData = await response.json();
+        setUsers(userData);
+    }
+
     useEffect(()=>{
         fetchFixtures()
         fetchFootballData()
+        fetchUserData()
     },[])
 
     return (
@@ -52,7 +61,7 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team/>
+                    <Team users={users}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard/>
