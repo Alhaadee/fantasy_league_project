@@ -11,14 +11,17 @@ const HomeContainer = () => {
     const [fixtures,setFixtures] = useState([])
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
+    const [loading,setLoading] = useState(true)
     
 
     const fetchFixtures = async () => {
-        const response = await fetch("http://localhost:8080/data/fixtures",{
-            headers: {
-                "Content-Type":"application/json"
-            }
-        })
+        const response = await fetch("http://localhost:8080/data/fixtures"
+        // ,{
+        //     headers: {
+        //         "Content-Type":"application/json"
+        //     }
+        // }
+        )
         const FixturesData = await response.json()
         setFixtures(FixturesData)
 
@@ -28,12 +31,57 @@ const HomeContainer = () => {
         const response = await fetch("http://localhost:8080/data/players")
         const footballStats = await response.json()
         setFootballData(footballStats)
+        setLoading(false)
     }
 
     useEffect(()=>{
         fetchFixtures()
         fetchFootballData()
+        
     },[])
+
+
+    useEffect(()=>{
+        if(!loading){
+            createPlayersObj()
+        }
+    },[loading])
+    
+
+
+    const createPlayersObj = () => {
+        const playerNames = {}
+        if(!loading){
+        footballData.elements.forEach(player => {
+            playerNames[player.id] = `${player.first_name} ${player.second_name}`
+        });
+        console.log(playerNames);
+        return playerNames
+        }
+    }
+
+    const teamNames = {
+        1:"Arsenal",
+        2:"Aston Villa",
+        3:"Bournemouth",
+        4:"Brentford",
+        5:"Brighton",
+        6:"Chelsea",
+        7:"Crystal Palace",
+        8:"Everton",
+        9:"Fulham",
+        10:"Leicester",
+        11:"Leeds",
+        12:"Liverpool",
+        13:"Man City",
+        14:"Man Utd",
+        15:"Newcastle",
+        16:"Nottingham Forest",
+        17:"Southampton",
+        18:"Tottenham Hotspurs",
+        19:"West Ham",
+        20:"Wolverhampton"
+      }
 
     return (
             <BrowserRouter>
@@ -49,7 +97,7 @@ const HomeContainer = () => {
 
                 <Routes> 
                     <Route path="/" element= {
-                    <Fixtures fixtures={fixtures} data={footballData}/>
+                    <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames}/>
                     }/>
                     <Route path="/team" element= {
                     <Team/>

@@ -1,29 +1,8 @@
 import React from 'react'
 
-export default function Fixtures({fixtures, data}) {
+export default function Fixtures({fixtures, data, teamNames}) {
   
-  const teamNames = {
-    1:"Arsenal",
-    2:"Aston Villa",
-    3:"Bournemouth",
-    4:"Brentford",
-    5:"Brighton",
-    6:"Chelsea",
-    7:"Crystal Palace",
-    8:"Everton",
-    9:"Fulham",
-    10:"Leicester",
-    11:"Leeds",
-    12:"Liverpool",
-    13:"Man City",
-    14:"Man Utd",
-    15:"Newcastle",
-    16:"Nottingham Forest",
-    17:"Southampton",
-    18:"Tottenham Hotspurs",
-    19:"West Ham",
-    20:"Wolverhampton"
-  }
+  
 
 
   
@@ -39,16 +18,23 @@ export default function Fixtures({fixtures, data}) {
    
   })
 
-  const goalsScored = fixtures.map((fixture)=>{
-    if (fixture.stats !== [] && fixture.stats[0].a !== []){
-      fixture.stats[0].a.map((scored)=>{
-        return (
-          <p>{scored.element},{scored.value}</p>
-        )
-      })
-    }
-  })
- 
+  // const goalsScored = fixtures.map((fixture)=>{
+  //   if (fixture.stats !== [] && fixture.stats[0].a !== []){
+  //     fixture.stats[0].a.map((scored)=>{
+  //       return (
+  //         <p>{scored.element},{scored.value}</p>
+  //       )
+  //     })
+  //   }
+  // })
+
+  const upcomingGames = fixtures.filter((fixture)=>fixture.event === 12)
+  // const awayGoalsScored = upcomingGames.map(fixture=>{
+  //   if(fixture.stats.length !== 0 && fixture.stats[0].a.length !== 0){
+  //   } 
+    
+  // })
+
   
 
   return (
