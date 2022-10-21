@@ -1,13 +1,16 @@
 package com.example.fullstackproject.fantasyleagueapi.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity(name="users")
-public class User {
+public class User implements UserDetails {
 
     @Column
     private String userName;
@@ -34,6 +37,9 @@ public class User {
     @Column
     private float transferBudget;
 
+    @Column
+    private String email;
+
     public User(String userName, String teamName){
         this.userName = userName;
         this.teamName = teamName;
@@ -41,6 +47,10 @@ public class User {
         this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
     }
+
+
+        // rest of the code not shown...
+
 
     public String getUserName() {
         return userName;
@@ -101,13 +111,48 @@ public class User {
         this.players.remove(player);
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    // User Details Authorities
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
+    @Override
+    public String getPassword() {
+        return null;
+    }
 
+    @Override
+    public String getUsername() {
+        return null;
+    }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
 
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
