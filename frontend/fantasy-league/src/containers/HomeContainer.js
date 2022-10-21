@@ -103,7 +103,7 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team users={users} footballData={footballData}/>
+                    <Team users={users} playersList={footballData.elements}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}/>

@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,footballData}) => {
+const PlayerCard = ({userplayer,playersList}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -12,16 +12,20 @@ const PlayerCard = ({userplayer,footballData}) => {
 
     // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
-    const getAPIplayer = 
-        setAPIplayer(footballData.elements.find(player => player.id === userplayer.apiid))
+    const updateApiPlayer =() =>{
+        let apiPlayerCopy = {...APIplayer}
+        apiPlayerCopy = playersList.find(player => player.id === userplayer.apiid)
+        setAPIplayer(apiPlayerCopy)
     }
-        
-
+    
+    useEffect(() => {
+      updateApiPlayer()
+    }, [])
+    
 
     return (
         <>
         <div>
-            {getAPIplayer}
             <img src={userplayer.playerImage}></img>
             <h3>{APIplayer.web_name}</h3>
             <h4>{APIplayer.total_points}</h4>
