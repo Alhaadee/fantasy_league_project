@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
         @Length(min = 5, max = 50)
         private String email;
 
-        @NotNull @Length(min = 5, max = 10)
+        @NotNull @Length(min = 4, max = 10)
         private String password;
 
         public String getEmail() {
