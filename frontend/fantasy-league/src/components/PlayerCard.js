@@ -12,25 +12,19 @@ const PlayerCard = ({userplayer,APIplayers}) => {
 
     // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
-    const getAPIplayer = APIplayers.elements.map(player => {
-            if (userplayer.apiid === player.id) {
-                setAPIplayer(player)
-                return (
-                    <>
-                    <img src={userplayer.playerImage}></img>
-                    <h3>{player.web_name}</h3>
-                    <h4>{player.total_points}</h4>
-                    </>
-                )
-            }
-        }) 
+    const getAPIplayer = 
+        setAPIplayer(APIplayers.elements.find(player => player.id === userplayer.apiid))
+    }
         
-    
+
 
     return (
         <>
         <div>
             {getAPIplayer}
+            <img src={userplayer.playerImage}></img>
+            <h3>{APIplayer.web_name}</h3>
+            <h4>{APIplayer.total_points}</h4>
             <input
                 type="button"
                 value="ℹ"

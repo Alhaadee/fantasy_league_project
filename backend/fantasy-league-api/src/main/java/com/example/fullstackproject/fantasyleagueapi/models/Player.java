@@ -42,7 +42,10 @@ public class Player {
     @Column
     private String playerImage;
 
-    public Player(String name, String position, float transferValue, String playerImage) {
+    @Column
+    int APIid;
+
+    public Player(String name, String position, float transferValue, String playerImage,int APIid) {
         this.name = name;
         this.position = position;
         this.transferValue = transferValue;
@@ -50,6 +53,7 @@ public class Player {
         this.gameWeekPoints = 0;
         this.playerImage = playerImage;
         this.users = new ArrayList<>();
+        this.APIid = APIid;
     }
 
     public Player () {
@@ -119,5 +123,13 @@ public class Player {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public int getAPIid() {
+        return APIid;
+    }
+
+    public void setAPIid(int APIid) {
+        this.APIid = APIid;
     }
 }
