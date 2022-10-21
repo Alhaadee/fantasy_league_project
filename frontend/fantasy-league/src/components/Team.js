@@ -1,7 +1,7 @@
 import { useState } from "react"
 import PlayerCard from "./PlayerCard"
 
-const Team = ({users}) => {
+const Team = ({users,APIplayers}) => {
 
   const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
@@ -13,15 +13,9 @@ const Team = ({users}) => {
 
   const teamComponents = users.map(user => {
     return user.players.map(player => (
-      <PlayerCard player={player}/>
+      <PlayerCard userplayer={player} APIplayers={APIplayers}/>
   ))
   })
-
-
-
-  
-
-  
 
 
   return(

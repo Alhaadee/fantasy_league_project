@@ -61,7 +61,7 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team users={users}/>
+                    <Team users={users} APIplayers={footballData}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard/>
