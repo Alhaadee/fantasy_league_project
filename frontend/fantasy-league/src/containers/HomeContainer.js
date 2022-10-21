@@ -55,7 +55,7 @@ const HomeContainer = () => {
         if(!loading){
         const playerNamesCopy = {...playerNames}
         footballData.elements.forEach(player => {
-            playerNamesCopy[player.id] = `${player.first_name} ${player.second_name}`
+            playerNamesCopy[player.id] = `${player.first_name[0]}. ${player.web_name}`
         });
         setPlayerNames(playerNamesCopy)
     }
