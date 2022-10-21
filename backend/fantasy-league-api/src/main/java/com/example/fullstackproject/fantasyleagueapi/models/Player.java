@@ -20,7 +20,8 @@ public class Player {
             joinColumns = {@JoinColumn(name = "player_id",nullable = false)},
             inverseJoinColumns = {@JoinColumn(name = "user_id",nullable = false)}
     )
-    @JsonIgnoreProperties({"players"})
+
+    @JsonIgnoreProperties("players")
     private List<User> users;
 
     @Column

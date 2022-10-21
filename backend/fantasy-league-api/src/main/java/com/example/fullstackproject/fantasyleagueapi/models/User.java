@@ -45,7 +45,6 @@ public class User {
         this.gameWeekScore = 0;
         this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
-
     }
 
     public String getUserName() {

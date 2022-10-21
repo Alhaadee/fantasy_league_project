@@ -31,9 +31,9 @@ const Stats = ({ data }) => {
 
 
   let top20Scorers = data.elements.sort((a, b) => b.goals_scored - a.goals_scored);
-  top20Scorers.splice(20)
+  let topS = top20Scorers.slice(0,20)
 
-  const topScorers = top20Scorers.map((player, key) => {
+  const topScorers = topS.map((player, key) => {
     return (
       <tr key={key}>
         <td>{player.first_name} {player.second_name}</td>
@@ -45,9 +45,9 @@ const Stats = ({ data }) => {
   })
 
   let top20Assisters = data.elements.sort((c, d) => d.assists - c.assists);
-  top20Assisters.splice(20)
+  let topA = top20Assisters.slice(0,20)
 
-  const topAssisters = top20Assisters.map((player, key) => {
+  const topAssisters = topA.map((player, key) => {
     return (
       <tr key={key}>
         <td>{player.first_name} {player.second_name}</td>
@@ -60,9 +60,10 @@ const Stats = ({ data }) => {
 
 
   let top20keepers = data.elements.sort((e, f) => f.saves - e.saves);
-  top20keepers.splice(20)
+  let topSave = top20keepers.slice(0,20)
 
-  const topKeepers = top20keepers.map((player, key) => {
+
+  const topKeepers = topSave.map((player, key) => {
     
     return (
        
@@ -72,8 +73,6 @@ const Stats = ({ data }) => {
             <td>{player.saves}</td>
 
           </tr>
-         
-        
           
         )
     })
@@ -104,6 +103,8 @@ return (
       {topAssisters}
     </table>
 
+
+    <h3>Most Saves</h3>
     <table>
       <tr>
         <th>Name</th>
