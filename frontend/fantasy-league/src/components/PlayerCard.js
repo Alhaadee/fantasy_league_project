@@ -13,7 +13,7 @@ const PlayerCard = ({userplayer,footballData}) => {
     // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
     const getAPIplayer = 
-        setAPIplayer(APIplayers.elements.find(player => player.id === userplayer.apiid))
+        setAPIplayer(footballData.elements.find(player => player.id === userplayer.apiid))
     }
         
 
