@@ -4,7 +4,6 @@ import Fixtures from "../components/Fixtures";
 import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
-import fixturesData from "../fixtures.json"
 
 const HomeContainer = () => {
 
@@ -12,15 +11,16 @@ const HomeContainer = () => {
     // contains gameweeks, teams, players
     const [footballData, setFootballData] = useState([])
     const [loading,setLoading] = useState(true)
+    const [playerNames, setPlayerNames] = useState ({})
     
 
     const fetchFixtures = async () => {
         const response = await fetch("http://localhost:8080/data/fixtures"
-        // ,{
-        //     headers: {
-        //         "Content-Type":"application/json"
-        //     }
-        // }
+        ,{
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }
         )
         const FixturesData = await response.json()
         setFixtures(FixturesData)
@@ -37,27 +37,22 @@ const HomeContainer = () => {
     useEffect(()=>{
         fetchFixtures()
         fetchFootballData()
-        
     },[])
-
-
+    
     useEffect(()=>{
         if(!loading){
             createPlayersObj()
         }
     },[loading])
-    
-
 
     const createPlayersObj = () => {
-        const playerNames = {}
         if(!loading){
+        const playerNamesCopy = {...playerNames}
         footballData.elements.forEach(player => {
-            playerNames[player.id] = `${player.first_name} ${player.second_name}`
+            playerNamesCopy[player.id] = `${player.first_name} ${player.second_name}`
         });
-        console.log(playerNames);
-        return playerNames
-        }
+        setPlayerNames(playerNamesCopy)
+    }
     }
 
     const teamNames = {
@@ -83,6 +78,8 @@ const HomeContainer = () => {
         20:"Wolverhampton"
       }
 
+      
+
     return (
             <BrowserRouter>
             <header>
@@ -97,7 +94,7 @@ const HomeContainer = () => {
 
                 <Routes> 
                     <Route path="/" element= {
-                    <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames}/>
+                    <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
                     <Team/>

@@ -29,3 +29,15 @@ h3 {
   display: table;
   margin: 0px auto;
 }
+
+.players-scored {
+  display: flex;
+}
+
+.left {
+  min-width: 135px;
+}
+
+ul {
+  list-style-type: none;
+}
