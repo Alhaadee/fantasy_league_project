@@ -5,11 +5,6 @@ import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
 
-import data from "../footballData.json"
-
-import fixturesData from "../fixtures.json"
-
-
 const HomeContainer = () => {
 
     const [fixtures,setFixtures] = useState([])
@@ -21,13 +16,7 @@ const HomeContainer = () => {
     
 
     const fetchFixtures = async () => {
-        const response = await fetch("http://localhost:8080/data/fixtures"
-        ,{
-            headers: {
-                "Content-Type":"application/json"
-            }
-        })
-
+        const response = await fetch("http://localhost:8080/data/fixtures")
         const FixturesData = await response.json()
         setFixtures(FixturesData)
 
