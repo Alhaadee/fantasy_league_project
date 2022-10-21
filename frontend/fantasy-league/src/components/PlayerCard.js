@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,APIplayers}) => {
+const PlayerCard = ({userplayer,footballData}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -12,7 +12,9 @@ const PlayerCard = ({userplayer,APIplayers}) => {
 
     // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
-    const getAPIplayer = APIplayers.elements.map(player => {
+    console.log(footballData.elements.find(player=>player.id===userplayer.apiid));
+
+    const getAPIplayer = footballData.elements.map(player => {
             if (userplayer.apiid === player.id) {
                 setAPIplayer(player)
                 return (
