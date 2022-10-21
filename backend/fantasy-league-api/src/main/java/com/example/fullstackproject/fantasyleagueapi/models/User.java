@@ -40,13 +40,19 @@ public class User implements UserDetails {
     @Column
     private String email;
 
-    public User(String userName, String teamName){
+    @Column
+    private String password;
+
+    public User(String userName, String teamName,String email,String password){
         this.userName = userName;
         this.teamName = teamName;
         this.overallScore = 0;
         this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
+        this.email = email;
+        this.password = password;
     }
+
 
 
         // rest of the code not shown...
@@ -154,5 +160,8 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public void setId(int parseInt) {
     }
 }

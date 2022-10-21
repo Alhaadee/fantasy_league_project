@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ApplicationSecurity {
 
     @Autowired
-    private UserRepository userRepo;
+    private UserRepository userRepository;
     @Autowired
     private JwtTokenFilter jwtTokenFilter;
 
@@ -33,13 +33,12 @@ public class ApplicationSecurity {
 
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return userRepo.findByEmail(username)
+                return userRepository.findByEmail(username)
                         .orElseThrow(
                                 () -> new UsernameNotFoundException("User " + username + " not found"));
             }
         };
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

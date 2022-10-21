@@ -2,11 +2,11 @@ package com.example.fullstackproject.fantasyleagueapi.springSecurityJwt;
 
 import com.example.fullstackproject.fantasyleagueapi.models.User;
 import io.jsonwebtoken.*;
+import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.Date;
-import java.util.logging.Logger;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -19,6 +19,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 @Component
 public class JwtTokenUtil {
     private static final long EXPIRE_DURATION = 24 * 60 * 60 * 1000; // 24 hour
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
 
     @Value("${app.jwt.secret}")
     private String SECRET_KEY;
@@ -31,25 +32,23 @@ public class JwtTokenUtil {
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
-
     }
-
-    private static final org.slf4j.Logger LOGGER = (org.slf4j.Logger) LoggerFactory.getLogger(JwtTokenUtil.class);
 
     public boolean validateAccessToken(String token) {
         try {
             Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException ex) {
-            LOGGER.error("JWT expired", ex.getMessage());
-        } catch (IllegalArgumentException ex) {
-            LOGGER.error("Token is null, empty or only whitespace", ex.getMessage());
-        } catch (MalformedJwtException ex) {
-            LOGGER.error("JWT is invalid", ex);
-        } catch (UnsupportedJwtException ex) {
-            LOGGER.error("JWT is not supported", ex);
-        } catch (SignatureException ex) {
-            LOGGER.error("Signature validation failed");
+            LOGGER.error(ex,()->"JWT expired, "+ ex.getMessage());
+
+//        } catch (IllegalArgumentException ex) {
+//            LOGGER.error("Token is null, empty or only whitespace", ex.getMessage());
+//        } catch (MalformedJwtException ex) {
+//            LOGGER.error("JWT is invalid", ex);
+//        } catch (UnsupportedJwtException ex) {
+//            LOGGER.error("JWT is not supported", ex);
+//        } catch (SignatureException ex) {
+//            LOGGER.error("Signature validation failed");
         }
 
         return false;

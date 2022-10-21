@@ -23,7 +23,7 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-        User user1 = new User("Sakusan","XI");
+        User user1 = new User("Sakusan","XI","sakusan@test.com","12345");
 
         userRepository.save(user1);
 
