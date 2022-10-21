@@ -13,7 +13,9 @@ h1 {
   text-align: center;
   
 }
-
+nav a {
+  text-decoration: none;
+}
 h3 {
   padding: 5px 0 0 0;
 }
@@ -26,6 +28,18 @@ h3 {
 .fixtures_component {
   display: table;
   margin: 0px auto;
+}
+
+.players-scored {
+  display: flex;
+}
+
+.left {
+  min-width: 135px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .popup-box {
