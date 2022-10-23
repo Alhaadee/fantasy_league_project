@@ -61,6 +61,15 @@ const HomeContainer = () => {
     }
     }
 
+
+    const removePlayer = async (userId,playerId) => {
+        await fetch(`http://localhost:8080/user/removePlayer?userId=${userId}&playerId=${playerId}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}
+        })
+        fetchUsers()
+    }
+
     const teamNames = {
         1:"Arsenal",
         2:"Aston Villa",
@@ -103,7 +112,7 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team users={users} playersList={footballData.elements}/>
+                    <Team users={users} playersList={footballData.elements} removePlayer={removePlayer}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}/>

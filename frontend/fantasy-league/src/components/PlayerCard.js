@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,playersList}) => {
+const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -9,8 +9,6 @@ const PlayerCard = ({userplayer,playersList}) => {
     const togglePopup = () => {
       setIsOpen(!isOpen);
     }
-
-    // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
     const updateApiPlayer =() =>{
         let apiPlayerCopy = {...APIplayer}
@@ -22,11 +20,17 @@ const PlayerCard = ({userplayer,playersList}) => {
       updateApiPlayer()
     }, [])
     
+    const imgURL = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${APIplayer.code}.png`;
+
+    const handleRemovePlayer = () => {
+        removePlayer(1,userplayer.id)
+    }
+
 
     return (
         <>
-        <div>
-            <img src={userplayer.playerImage}></img>
+        <div id="player-card">
+            <img src={imgURL}></img>
             <h3>{APIplayer.web_name}</h3>
             <h4>{APIplayer.total_points}</h4>
             <input
@@ -35,6 +39,8 @@ const PlayerCard = ({userplayer,playersList}) => {
                 onClick={togglePopup}
             />
             {isOpen && <PlayerPopUp player={APIplayer} handleClose={togglePopup}/>}
+            <button onClick={handleRemovePlayer}>ⅹ</button>
+            
         </div>
         </>
     )

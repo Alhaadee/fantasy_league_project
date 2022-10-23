@@ -31,17 +31,20 @@ public class DataLoader implements ApplicationRunner {
         Player player2 = new Player("James","Defender",6.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",146);
         Player player3 = new Player("Ederson","Goalkeeper",6.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p121160.png",307);
         Player player4 = new Player("De Bruyne","Midfielder",10.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p61366.png",301);
+        Player player5 = new Player("Kante","Midfielder",5.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p116594.png",134);
 
         playerRepository.save(player1);
         playerRepository.save(player2);
         playerRepository.save(player3);
         playerRepository.save(player4);
+        playerRepository.save(player5);
 
 
         user1.addPlayerToUser(player1);
         user1.addPlayerToUser(player2);
         user1.addPlayerToUser(player3);
         user1.addPlayerToUser(player4);
+        user1.addPlayerToUser(player5);
 
         userRepository.save(user1);
 
