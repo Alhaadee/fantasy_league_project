@@ -53,7 +53,8 @@ ul {
  
 .box {
   position: relative;
-  width: 70%;
+  text-align: center;
+  width: 20%;
   margin: 0 auto;
   height: auto;
   max-height: 70vh;
@@ -69,7 +70,7 @@ ul {
   content: 'x';
   cursor: pointer;
   position: fixed;
-  right: calc(15% - 30px);
+  right: calc(37%);
   top: calc(100vh - 85vh - 33px);
   background: #ededed;
   width: 25px;
@@ -79,4 +80,10 @@ ul {
   text-align: center;
   border: 1px solid #999;
   font-size: 20px;
+}
+
+#player-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
 }

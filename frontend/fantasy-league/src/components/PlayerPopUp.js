@@ -3,7 +3,7 @@ const PlayerPopUp = ({player,handleClose}) => {
         <div className="popup-box">
             <div className="box">
             <span className="close-icon" onClick={handleClose}>ⅹ</span>
-            {player.web_name}
+            <h3>{player.first_name} {player.second_name}</h3>
             <p>Price: {player.now_cost/10}</p>
             <p>Goals Scored: {player.goals_scored}</p>
             <p>Assists: {player.assists}</p>

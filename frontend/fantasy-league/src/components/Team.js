@@ -1,7 +1,7 @@
 import { useState } from "react"
 import PlayerCard from "./PlayerCard"
 
-const Team = ({users,playersList}) => {
+const Team = ({users,playersList,removePlayer}) => {
 
   const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
@@ -13,7 +13,7 @@ const Team = ({users,playersList}) => {
 
   const teamComponents = users.map(user => {
     return user.players.map(player => (
-      <PlayerCard userplayer={player} playersList={playersList}/>
+      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
   ))
   })
 
@@ -21,7 +21,9 @@ const Team = ({users,playersList}) => {
   return(
     <>
     {userComponents}
-    {teamComponents}
+    <div id="player-list">
+      {teamComponents}
+    </div>
     </>
   )
 
