@@ -26,9 +26,10 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
         removePlayer(1,userplayer.id)
     }
 
+
     return (
         <>
-        <div>
+        <div id="player-card">
             <img src={imgURL}></img>
             <h3>{APIplayer.web_name}</h3>
             <h4>{APIplayer.total_points}</h4>

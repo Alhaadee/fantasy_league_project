@@ -87,3 +87,41 @@ ul {
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
 }
+
+#team-display {
+  background-color: green;
+
+}
+
+#keepers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#defenders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#midfielders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#strikers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#player-card{
+  align-items: center;
+  text-align: center;
+}
+
+
+

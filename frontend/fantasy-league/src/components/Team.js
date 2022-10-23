@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 
 const Team = ({users,playersList,removePlayer}) => {
@@ -10,6 +10,31 @@ const Team = ({users,playersList,removePlayer}) => {
   //     <li>{player.name} <img src={player.url}></img> </li>
   // ))
   // })
+  let keepersList = users[0].players.filter(player => player.position === "Goalkeeper")
+  let defendersList = users[0].players.filter(player => player.position === "Defender")
+  let midfieldersList = users[0].players.filter(player => player.position === "Midfielder")
+  let strikersList = users[0].players.filter(player => player.position === "Striker")
+
+  const keepersComponent = 
+    keepersList.map(keeper => (
+      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer}/>
+    ))
+
+  const defendersComponent =
+    defendersList.map(defender => (
+      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer}/>
+    ))
+
+  const midfieldersComponent =
+  midfieldersList.map(midfielder => (
+    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer}/>
+  ))
+
+  const strikersComponent =
+  strikersList.map(striker => (
+    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer}/>
+  ))
+  
 
   const teamComponents = users.map(user => {
     return user.players.map(player => (
@@ -21,8 +46,14 @@ const Team = ({users,playersList,removePlayer}) => {
   return(
     <>
     {userComponents}
-    <div id="player-list">
+    {/* <div id="player-list">
       {teamComponents}
+    </div> */}
+    <div id="team-display">
+      <div id="keepers">{keepersComponent}</div>
+      <div id="defenders">{defendersComponent}</div>
+      <div id="midfielders">{midfieldersComponent}</div>
+      <div id="strikers">{strikersComponent}</div>
     </div>
     </>
   )
