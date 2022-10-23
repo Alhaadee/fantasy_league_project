@@ -60,11 +60,13 @@ const awayGoalsScored = (fixture) => {
  
   
   const fixturesList = fixtures.map((fixture)=>{
-    if (fixture.event === 12){
+    if (fixture.event === 13){
       return(
         <div key={fixture.id} className='fixture_card'>
         <h3 >{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
-        {fixture.finished ?  <p>{fixture.team_h_score}:{fixture.team_a_score}</p> : <p>Kick Off time: {fixture.kickoff_time}</p>}
+        {fixture.started  & !fixture.finished ?  <p>{fixture.team_h_score}:{fixture.team_a_score} (LIVE)</p> : <></>}
+        {fixture.finished ?  <p>{fixture.team_h_score}:{fixture.team_a_score}</p> : <></>}
+        {!fixture.started ?  <p>Kick Off time: {fixture.kickoff_time}</p>: <></>}
         <div className='players-scored'>
         <ul className='left'>
         {homeGoalsScored(fixture)}
