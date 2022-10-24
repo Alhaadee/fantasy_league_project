@@ -2,7 +2,9 @@ nav {
   display: flex;
   justify-content: space-evenly;
 }
-
+.pages {
+  text-align: center;
+}
 h1 {
   text-align: center;
 }
