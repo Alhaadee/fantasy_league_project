@@ -106,7 +106,7 @@ ul {
 }
 
 
-#midfielders {
+#midfielders,#placeholder-mid {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,6 +121,12 @@ ul {
 #player-card{
   align-items: center;
   text-align: center;
+}
+
+#placeholder{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
 

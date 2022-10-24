@@ -15,7 +15,23 @@ const Team = ({users,playersList,removePlayer}) => {
   let midfieldersList = users[0].players.filter(player => player.position === "Midfielder")
   let strikersList = users[0].players.filter(player => player.position === "Striker")
 
-  const keepersComponent = 
+  const checkIfEmpty = (list) => {
+    if (list === undefined || list.length == 0) {
+      return(
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" height={200}></img>
+      )
+    } 
+  }
+
+  const checkIfEmptyMid = (list) => {
+    if (list === undefined || list.length === 0 || list.length === 1) {
+      return(
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" height={200}></img>
+      )
+    } 
+  }
+
+  const keepersComponent =
     keepersList.map(keeper => (
       <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer}/>
     ))
@@ -36,11 +52,11 @@ const Team = ({users,playersList,removePlayer}) => {
   ))
   
 
-  const teamComponents = users.map(user => {
-    return user.players.map(player => (
-      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
-  ))
-  })
+  // const teamComponents = users.map(user => {
+  //   return user.players.map(player => (
+  //     <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
+  // ))
+  // })
 
 
   return(
@@ -50,9 +66,13 @@ const Team = ({users,playersList,removePlayer}) => {
       {teamComponents}
     </div> */}
     <div id="team-display">
+      <div id="placeholder">{checkIfEmpty(keepersList)}</div>
       <div id="keepers">{keepersComponent}</div>
+      <div id="placeholder">{checkIfEmpty(defendersList)}</div>
       <div id="defenders">{defendersComponent}</div>
+      <div id="placeholder-mid">{checkIfEmptyMid(midfieldersList)}</div>
       <div id="midfielders">{midfieldersComponent}</div>
+      <div id="placeholder">{checkIfEmpty(strikersList)}</div>
       <div id="strikers">{strikersComponent}</div>
     </div>
     </>

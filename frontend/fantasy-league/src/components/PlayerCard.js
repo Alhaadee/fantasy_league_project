@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
+const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -24,7 +24,11 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
 
     const handleRemovePlayer = () => {
         removePlayer(1,userplayer.id)
+
     }
+
+
+
 
 
     return (
