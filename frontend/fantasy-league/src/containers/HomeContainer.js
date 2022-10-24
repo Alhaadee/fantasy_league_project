@@ -37,6 +37,15 @@ const HomeContainer = () => {
         setUsers(JSONuser)
     }
 
+    const addPlayer = (player) => {
+        setUsers([...users[0].players, player])
+        // if(users.players >= 5) {
+        //     alert("You've already added 5 players!");
+        // } else {
+        //     setUsers([...users.players, player])
+        // }
+    }
+
     
 
     useEffect(()=>{
@@ -66,6 +75,15 @@ const HomeContainer = () => {
         await fetch(`http://localhost:8080/user/removePlayer?userId=${userId}&playerId=${playerId}`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'}
+        })
+        fetchUsers()
+    }
+
+    const createPlayer = async (player) => {
+        await fetch(`http://localhost:8080/user/players`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(player)
         })
         fetchUsers()
     }
@@ -112,7 +130,12 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team users={users} playersList={footballData.elements} removePlayer={removePlayer}/>
+                    <Team users={users} 
+                    playersList={footballData.elements} 
+                    removePlayer={removePlayer}
+                    data ={footballData}
+                    addPlayer ={addPlayer}
+                    createPlayer = {createPlayer}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}/>

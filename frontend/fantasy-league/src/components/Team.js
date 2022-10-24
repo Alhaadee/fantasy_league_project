@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
+import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer}) => {
+const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer}) => {
 
-  const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
+  // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
   // const teamComponents = users.map(user => {
   //   return user.players.map(player => (
@@ -40,12 +41,16 @@ const Team = ({users,playersList,removePlayer}) => {
     return user.players.map(player => (
       <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
   ))
-  })
+  }) 
 
+  // const handleClick = () => {
+  //   addPlayer(player);
+  
+  // }
 
   return(
     <>
-    {userComponents}
+    {/* {userComponents} */}
     {/* <div id="player-list">
       {teamComponents}
     </div> */}
@@ -55,6 +60,12 @@ const Team = ({users,playersList,removePlayer}) => {
       <div id="midfielders">{midfieldersComponent}</div>
       <div id="strikers">{strikersComponent}</div>
     </div>
+
+    <TeamSearch 
+    data ={data}
+    addPlayer = {addPlayer}
+    createPlayer = {createPlayer}
+    />
     </>
   )
 
