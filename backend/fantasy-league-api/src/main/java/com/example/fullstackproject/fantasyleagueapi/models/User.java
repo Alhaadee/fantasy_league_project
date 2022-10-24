@@ -12,6 +12,7 @@ import java.util.List;
 @Entity(name="users")
 public class User implements UserDetails {
 
+
     @Column
     private String userName;
 
@@ -35,6 +36,9 @@ public class User implements UserDetails {
     private int overallScore;
 
     @Column
+    private int gameWeekScore;
+
+    @Column
     private float transferBudget;
 
     @Column
@@ -47,6 +51,7 @@ public class User implements UserDetails {
         this.userName = userName;
         this.teamName = teamName;
         this.overallScore = 0;
+        this.gameWeekScore = 0;
         this.transferBudget = 100.00F;
         this.players = new ArrayList<>();
         this.email = email;
@@ -96,6 +101,14 @@ public class User implements UserDetails {
 
     public void setOverallScore(int overallScore) {
         this.overallScore = overallScore;
+    }
+
+    public int getGWScore() {
+        return gameWeekScore;
+    }
+
+    public void setGWScore(int GWScore) {
+        this.gameWeekScore = GWScore;
     }
 
     public float getTransferBudget() {

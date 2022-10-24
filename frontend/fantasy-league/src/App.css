@@ -13,7 +13,9 @@ h1 {
   text-align: center;
   
 }
-
+nav a {
+  text-decoration: none;
+}
 h3 {
   padding: 5px 0 0 0;
 }
@@ -27,3 +29,99 @@ h3 {
   display: table;
   margin: 0px auto;
 }
+
+.players-scored {
+  display: flex;
+}
+
+.left {
+  min-width: 135px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+ 
+.box {
+  position: relative;
+  text-align: center;
+  width: 20%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+ 
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(37%);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
+
+#player-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+
+#team-display {
+  background-color: green;
+
+}
+
+#keepers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#defenders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#midfielders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#strikers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#player-card{
+  align-items: center;
+  text-align: center;
+}
+
+
+
