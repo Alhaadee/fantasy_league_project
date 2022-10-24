@@ -5,6 +5,7 @@ const TeamSearch = ({data,createPlayer}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
+    // const [selectedPlayer,setSelectedPlayers] = useState(null)
     
 
     
@@ -18,15 +19,17 @@ const TeamSearch = ({data,createPlayer}) => {
         // }
     }
 
-
-
     const handleClick = (e) => {
-        const selectedPlayer = filteredPlayers.find((player) => player.web_name === e.target.value)
-        
+        console.log(e.target.textContent);
+        // let copiedplayer = {...selectedPlayer}
+        const copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
+        console.log(copiedplayer)
+        // await setSelectedPlayers(copiedplayer)
+        console.log(copiedplayer.web_name)
         createPlayer({
-            name: selectedPlayer.web_name,
-            transferValue: selectedPlayer.now_cost/ 10,
-            apiid: selectedPlayer.id
+            name: copiedplayer.web_name,
+            transferValue: copiedplayer.now_cost/ 10,
+            apiid: copiedplayer.id
         })
     }
 
@@ -36,7 +39,7 @@ const TeamSearch = ({data,createPlayer}) => {
 
         return (
             // <li>{player.first_name}</li>
-            <li onClick={handleClick}>{player.first_name}</li>
+            <li onClick={handleClick}>{player.web_name}</li>
         )
     })
 

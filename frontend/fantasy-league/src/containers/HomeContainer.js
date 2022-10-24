@@ -80,12 +80,11 @@ const HomeContainer = () => {
     }
 
     const createPlayer = async (player) => {
-        await fetch(`http://localhost:8080/user/players`, {
+        await fetch(`http://localhost:8080/players`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(player)
         })
-        fetchUsers()
     }
 
     const teamNames = {
