@@ -21,12 +21,16 @@ const homeGoalsScored = (fixture,goalType) => {
   if(!loading && fixture.stats.length !== 0 && fixture.stats[goalType].h.length !== 0){
     return(
     fixture.stats[goalType].h.map((playerScored,index) => {
+      if(goalType === 0){
       return (<li key={fixture.id+index}>{playerNames[playerScored.element]} : {playerScored.value}</li>)
-    })
-    )
+    } else{
+      return (<li key={fixture.id+index}>{playerNames[playerScored.element]}(OG): {playerScored.value}</li>)
+
+    }
+    }))
   }
 }
-
+//  if goal type =  2...
 const displayScoreboard = (fixture) => {
   if(fixtures.started & !fixture.finished){
     return <p>{fixture.team_h_score}:{fixture.team_a_score} (LIVE)</p>
