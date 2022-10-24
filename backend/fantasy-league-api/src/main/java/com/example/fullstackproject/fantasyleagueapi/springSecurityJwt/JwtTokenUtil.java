@@ -42,13 +42,14 @@ public class JwtTokenUtil {
             LOGGER.error(ex,()->"JWT expired, "+ ex.getMessage());
 
         } catch (IllegalArgumentException ex) {
-            LOGGER.error(ex,()->"Token is null, empty or only whitespace"+ ex.getMessage());
+
+            LOGGER.error(ex,()->"Token is null, empty or only whitespace, "+ ex.getMessage());
         } catch (MalformedJwtException ex) {
-            LOGGER.error(ex,()->"JWT is invalid"+ ex.getMessage());
+            LOGGER.error(ex,()->"JWT is invalid");
         } catch (UnsupportedJwtException ex) {
-            LOGGER.error(ex,()->"JWT is not supported"+ ex.getMessage());
+            LOGGER.error(ex,()->"JWT is not supported");
         } catch (SignatureException ex) {
-            LOGGER.error(ex,()->"Signature validation failed"+ ex.getMessage());
+            LOGGER.error(()->"Signature validation failed");
         }
 
         return false;
