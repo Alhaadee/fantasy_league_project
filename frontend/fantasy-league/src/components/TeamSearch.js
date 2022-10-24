@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../App.css';
 
-const TeamSearch = ({data,createPlayer}) => {
+const TeamSearch = ({data,createPlayer, addPlayer, backendPlayers}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -29,8 +29,11 @@ const TeamSearch = ({data,createPlayer}) => {
         createPlayer({
             name: copiedplayer.web_name,
             transferValue: copiedplayer.now_cost/ 10,
-            apiid: copiedplayer.id
+            apiid: copiedplayer.id,
+            position: copiedplayer.element_type
         })
+        console.log(backendPlayers.slice(-1))
+        addPlayer(1,backendPlayers.slice(-1).pop().id)
     }
 
 

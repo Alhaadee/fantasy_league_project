@@ -13,6 +13,7 @@ const HomeContainer = () => {
     const [users , setUsers] = useState([])
     const [loading,setLoading] = useState(true)
     const [playerNames, setPlayerNames] = useState ({})
+    const [backendPlayers, setBackEndPlayers] = useState([])
     
 
     const fetchFixtures = async () => {
@@ -29,6 +30,12 @@ const HomeContainer = () => {
         setLoading(false)
     }
 
+    const fetchPlayers = async() => {
+        const response = await fetch(`http://localhost:8080/players`)
+        const databasePlayers = await response.json()
+        setBackEndPlayers(databasePlayers)
+    }
+
 
 
     const fetchUsers = async()=> {
@@ -37,14 +44,14 @@ const HomeContainer = () => {
         setUsers(JSONuser)
     }
 
-    const addPlayer = (player) => {
-        setUsers([...users[0].players, player])
-        // if(users.players >= 5) {
-        //     alert("You've already added 5 players!");
-        // } else {
-        //     setUsers([...users.players, player])
-        // }
-    }
+    // const addPlayer = (player) => {
+    //     setUsers([...users[0].players, player])
+    //     // if(users.players >= 5) {
+    //     //     alert("You've already added 5 players!");
+    //     // } else {
+    //     //     setUsers([...users.players, player])
+    //     // }
+    // }
 
     
 
@@ -52,6 +59,7 @@ const HomeContainer = () => {
         fetchFixtures()
         fetchFootballData()
         fetchUsers()
+        fetchPlayers()
     },[])
     
     useEffect(()=>{
@@ -86,6 +94,16 @@ const HomeContainer = () => {
             body: JSON.stringify(player)
         })
     }
+
+    const addPlayerToUser = async (userId,playerId) => {
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}
+        })
+        fetchUsers()
+    }
+    
+
 
     const teamNames = {
         1:"Arsenal",
@@ -133,8 +151,9 @@ const HomeContainer = () => {
                     playersList={footballData.elements} 
                     removePlayer={removePlayer}
                     data ={footballData}
-                    addPlayer ={addPlayer}
-                    createPlayer = {createPlayer}/>
+                    createPlayer = {createPlayer}
+                    addPlayer = {addPlayerToUser}
+                    backendPlayers = {backendPlayers}/>
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}/>
@@ -148,6 +167,8 @@ const HomeContainer = () => {
             </BrowserRouter>
 
     )
-}
+
+                }
+
 
 export default HomeContainer;

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer}) => {
+const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer,backendPlayers}) => {
 
   // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
@@ -11,10 +11,10 @@ const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer}) => 
   //     <li>{player.name} <img src={player.url}></img> </li>
   // ))
   // })
-  let keepersList = users[0].players.filter(player => player.position === "Goalkeeper")
-  let defendersList = users[0].players.filter(player => player.position === "Defender")
-  let midfieldersList = users[0].players.filter(player => player.position === "Midfielder")
-  let strikersList = users[0].players.filter(player => player.position === "Striker")
+  let keepersList = users[0].players.filter(player => player.position === 1)
+  let defendersList = users[0].players.filter(player => player.position === 2)
+  let midfieldersList = users[0].players.filter(player => player.position === 3)
+  let strikersList = users[0].players.filter(player => player.position === 4)
 
   const keepersComponent = 
     keepersList.map(keeper => (
@@ -65,6 +65,7 @@ const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer}) => 
     data ={data}
     addPlayer = {addPlayer}
     createPlayer = {createPlayer}
+    backendPlayers ={backendPlayers}
     />
     </>
   )
