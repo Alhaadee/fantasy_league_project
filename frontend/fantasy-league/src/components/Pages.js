@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Pages({selectedWeek, setSelectedWeek}) {
+export default function Pages({setSelectedWeek}) {
   
     const buttons = () => {
         const arr = []
@@ -14,7 +14,6 @@ export default function Pages({selectedWeek, setSelectedWeek}) {
 
     const handleClick = (e) => {
         setSelectedWeek(parseInt(e.target.textContent))  
-        console.log(selectedWeek);
     }
   
   

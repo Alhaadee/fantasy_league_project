@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import ReactPaginate from 'react-paginate'
 import Pages from './Pages'
 
 export default function Fixtures({fixtures, data, teamNames, playerNames, loading}) {
@@ -7,8 +8,7 @@ export default function Fixtures({fixtures, data, teamNames, playerNames, loadin
 
   const normalGoalIndex = 0
   const ownGoalIndex = 2
-  const [selectedWeek, setSelectedWeek] = useState(5)
-
+  const [selectedWeek, setSelectedWeek] = useState(3)
   
 
   useEffect(()=>{
@@ -52,7 +52,14 @@ const displayScoreboard = (fixture) => {
   } else if (fixture.finished){
     return <p>{fixture.team_h_score}:{fixture.team_a_score}</p>
   } else {
-    return <p>Kick Off time: {fixture.kickoff_time}</p>
+    const date = fixture.kickoff_time.split("T")
+    return(
+    <div>
+    <p className='kickoff'>Kick Off time</p>
+    <p>{date[0]}</p>
+    <p>{date[1].slice(0,-1)}</p>
+    </div>
+    )
   }
 }
 
@@ -83,15 +90,33 @@ const displayScoreboard = (fixture) => {
    
   })
 
-
+  const handlePageClick = ({selected : selectedPage}) => {
+    console.log("selectedPage", selectedPage);
+    setSelectedWeek(selectedPage+1)  
+}
 
 
   return (
     <>
-    <Pages selectedWeek={selectedWeek} setSelectedWeek={setSelectedWeek}/>
-    <div className='fixtures_component'>
+     {!loading ?   <ReactPaginate 
+        previousLabel = {"<- Previous"}
+        nextLabel = {"next ->"}
+        pageCount = {38}
+        initialPage = {12}
+        onPageChange ={handlePageClick}
+        containerClassName={"pagination"}
+        previousLinkClassName={"pagination__link"}
+        nextLinkClassName={"pagination__link"}
+        disabledClassName={"pagination__link--disabled"}
+        activeClassName={"pagination__link--active"}
+
+    /> : <></>}
+    <h2>Game Week {selectedWeek}</h2>
+    <div className='fixtures_list'>
         {fixturesList}
     </div>
+   
+  
     </>
 
   )
