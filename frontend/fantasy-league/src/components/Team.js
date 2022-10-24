@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
+import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer}) => {
+const Team = ({users,playersList,removePlayer,addPlayer,data, createPlayer,backendPlayers}) => {
 
-  const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
+  // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
   // const teamComponents = users.map(user => {
   //   return user.players.map(player => (
   //     <li>{player.name} <img src={player.url}></img> </li>
   // ))
   // })
-  let keepersList = users[0].players.filter(player => player.position === "Goalkeeper")
-  let defendersList = users[0].players.filter(player => player.position === "Defender")
-  let midfieldersList = users[0].players.filter(player => player.position === "Midfielder")
-  let strikersList = users[0].players.filter(player => player.position === "Striker")
+  let keepersList = users[0].players.filter(player => player.position === 1)
+  let defendersList = users[0].players.filter(player => player.position === 2)
+  let midfieldersList = users[0].players.filter(player => player.position === 3)
+  let strikersList = users[0].players.filter(player => player.position === 4)
 
   const checkIfEmpty = (list) => {
     if (list === undefined || list.length == 0) {
@@ -51,17 +52,9 @@ const Team = ({users,playersList,removePlayer}) => {
     <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer}/>
   ))
   
-
-  // const teamComponents = users.map(user => {
-  //   return user.players.map(player => (
-  //     <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
-  // ))
-  // })
-
-
   return(
     <>
-    {userComponents}
+    {/* {userComponents} */}
     {/* <div id="player-list">
       {teamComponents}
     </div> */}
@@ -75,6 +68,13 @@ const Team = ({users,playersList,removePlayer}) => {
       <div id="placeholder">{checkIfEmpty(strikersList)}</div>
       <div id="strikers">{strikersComponent}</div>
     </div>
+
+    <TeamSearch 
+    data ={data}
+    addPlayer = {addPlayer}
+    createPlayer = {createPlayer}
+    backendPlayers ={backendPlayers}
+    />
     </>
   )
 
