@@ -60,7 +60,7 @@ public class User implements UserDetails {
 
 
 
-        // rest of the code not shown...
+
 
 
     public String getUserName() {
@@ -147,32 +147,35 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.userName;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setId(int parseInt) {

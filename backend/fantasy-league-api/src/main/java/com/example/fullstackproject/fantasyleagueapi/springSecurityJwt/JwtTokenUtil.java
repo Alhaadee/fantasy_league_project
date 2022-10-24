@@ -40,7 +40,7 @@ public class JwtTokenUtil {
             return true;
         } catch (ExpiredJwtException ex) {
             LOGGER.error(ex,()->"JWT expired, "+ ex.getMessage());
-
+//
         } catch (IllegalArgumentException ex) {
 
             LOGGER.error(ex,()->"Token is null, empty or only whitespace, "+ ex.getMessage());

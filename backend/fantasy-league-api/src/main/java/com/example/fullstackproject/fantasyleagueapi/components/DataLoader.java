@@ -7,6 +7,8 @@ import com.example.fullstackproject.fantasyleagueapi.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,7 +25,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception{
-        User user1 = new User("Sakusan","XI","sakusan@test.com","12345");
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode("12345");
+        User user1 = new User("Sakusan","XI","sakusan@test.com",password);
 
         userRepository.save(user1);
 
