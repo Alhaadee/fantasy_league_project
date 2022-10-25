@@ -1,30 +1,55 @@
-import React from 'react'
+import React, { useState}  from "react"
+import  { useNavigate } from "react-router-dom"
+import authService from "../services/auth.service";
 
-export default function Login() {
-  
-    
+const LogIn = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    const key = process.env.SECRET_KEY;
+    const navigate = useNavigate();
 
-    const login = async (userDetails) => {
-        const response = await fetch("http://localhost:8080/auth/login",{
-            method: "POST",
-            headers:{'Content-Type': 'application/json'},
-            body: JSON.stringify(userDetails)
-        })
-        const accessToken = response.json().accessToken
-        // console.log(response.json());
-    }
-  
-  
-    // login({
-    //     email:"sakusan@test.com",
-    //     password:"12345"
-    // })
-  
-  
-  
+    const handleLogIn = async (event) => {
+        event.preventDefault();
+        try {
+            await authService.login(email,password).then (
+                () => {
+                    navigate("/team");
+                    window.location.reload();
+                },
+
+               
+            );
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
-    <div>Login</div>
-  )
+        <div>
+
+            <form onSubmit={handleLogIn}>
+
+            <h3>Log In</h3>
+            <input 
+                type="text"
+                placeholder="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                />
+            
+            <input
+            type="password"
+            placeholder="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            />
+
+                <button type="submit">Sign up</button>
+
+            </form>
+
+            </div>
+    )
 }
+export default LogIn;
