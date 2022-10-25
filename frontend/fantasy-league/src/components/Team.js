@@ -43,6 +43,23 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
   ))
   }) 
 
+  // const overallScore = users[0].players.map(player => {
+  //   let count = 0;
+  //   count += player.overallScore
+  //   console.log(count)
+  //   return count;
+  // })
+
+  console.log(users[0].overallScore)
+
+  let count = 0;
+  const transferbudget = users[0].players.map(player => {
+    count += player.transferValue 
+    console.log(count);
+  })
+
+  // let t2 = 0;
+  // const transferbudget2 = 
 
   return(
     <>
@@ -55,6 +72,12 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
       <div id="defenders">{defendersComponent}</div>
       <div id="midfielders">{midfieldersComponent}</div>
       <div id="strikers">{strikersComponent}</div>
+    </div>
+
+    <div>
+      <h3> Transfer budget: </h3>
+      {100 - count}
+
     </div>
 
     <TeamSearch 
