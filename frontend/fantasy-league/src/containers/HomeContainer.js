@@ -60,7 +60,7 @@ const HomeContainer = () => {
         fetchFootballData()
         fetchUsers()
         fetchPlayers()
-    },[])
+    },[backendPlayers])
 
     
     useEffect(()=>{
