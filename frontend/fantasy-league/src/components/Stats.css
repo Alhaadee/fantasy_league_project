@@ -1,11 +1,11 @@
-/* .stat_table {
+ /* .stat_table {
   
-    width: 100%;
-    height: 100vh;
+    width: 1500px;
+    height: 1500px;
     display: flex;
     justify-content: center;
     align-items: center;
-  } */
+  }  */
     
   table {
     border: 2px solid forestgreen;
@@ -14,7 +14,21 @@
     height:170px;
     display:block;
     margin: 10px;
+    text-align: center;
+  
 
+  }
+
+  topScorers{
+    align-items: center;
+  }
+
+  topAssisters{
+    align-items: center;
+  }
+
+  topKeepers{
+    align-items: center;
   }
     
   th {

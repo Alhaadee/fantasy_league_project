@@ -4,19 +4,22 @@ nav {
 }
 .pages {
   text-align: center;
+  background-color: purple;
 }
 
 h2 {
   text-align: center;
+  background-color: purple;
 }
 
 h1 {
   text-align: center;
+  background-color: green;
 }
 
 .fixture_card {
   background-color: lime;
-  border-radius: 5px;
+  border-radius: 8px;
   text-align: center;
   
 }
@@ -92,10 +95,12 @@ ul {
 #player-list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 30px;
+  gap: 60px;
 }
 
 #team-display {
+  background-image: url("https://as2.ftcdn.net/v2/jpg/04/15/85/45/1000_F_415854570_O2ybQ25EXxcQHWYFRjdqt5L3eOkRhLIw.jpg");
+  background-size: 1300px;
   background-color: limegreen;
 
 }
