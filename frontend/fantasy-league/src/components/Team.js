@@ -18,17 +18,17 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
 
   const keepersComponent = 
     keepersList.map(keeper => (
-      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer}/>
+      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id}/>
     ))
 
   const defendersComponent =
     defendersList.map(defender => (
-      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer}/>
+      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer} key={defender.id}/>
     ))
 
   const midfieldersComponent =
   midfieldersList.map(midfielder => (
-    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer}/>
+    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer} key={midfielder.id}/>
   ))
 
   const strikersComponent =

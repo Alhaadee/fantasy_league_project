@@ -60,7 +60,7 @@ const HomeContainer = () => {
         fetchFootballData()
         fetchUsers()
         fetchPlayers()
-    },[backendPlayers])
+    },[])
 
     
     useEffect(()=>{
@@ -94,10 +94,18 @@ const HomeContainer = () => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(player)
         })
+
         const savedPlayer = await response.json()
-        console.log(savedPlayer);
-        // fetchPlayers()
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${1}&playerId=${savedPlayer.id}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}
+        })
+        await fetchUsers()
+        // console.log(savedPlayer);
+        // console.log(backendPlayers);
         setBackEndPlayers([...backendPlayers,savedPlayer])
+        // console.log(backendPlayers);
+        
     }
 
 

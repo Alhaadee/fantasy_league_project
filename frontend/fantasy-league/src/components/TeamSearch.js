@@ -19,7 +19,7 @@ const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPla
         // }
     }
 
-    const handleClick = (e) => {
+    const handleClick =  (e) => {
         // console.log(e.target.textContent);
         // let copiedplayer = {...selectedPlayer}
         let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
@@ -32,7 +32,8 @@ const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPla
             position: copiedplayer.element_type
         })
         
-        addPlayerToUser(1,backendPlayers.slice(-1).pop().id)
+        // addPlayerToUser(1,backendPlayers.slice(-1).pop().id)
+        // console.log(backendPlayers.at(-1).id)
     }
 
 
