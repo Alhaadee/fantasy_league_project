@@ -134,6 +134,12 @@ ul {
   text-align: center;
 }
 
+/* #placeholder{
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+} */
+
 
 .pagination {
   display: flex;

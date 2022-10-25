@@ -13,6 +13,7 @@ const HomeContainer = () => {
     const [users , setUsers] = useState([])
     const [loading,setLoading] = useState(true)
     const [playerNames, setPlayerNames] = useState ({})
+    const [backendPlayers, setBackEndPlayers] = useState([])
     
 
     const fetchFixtures = async () => {
@@ -29,6 +30,12 @@ const HomeContainer = () => {
         setLoading(false)
     }
 
+    const fetchPlayers = async() => {
+        const response = await fetch(`http://localhost:8080/players`)
+        const databasePlayers = await response.json()
+        setBackEndPlayers(databasePlayers)
+    }
+
 
 
     const fetchUsers = async()=> {
@@ -37,13 +44,24 @@ const HomeContainer = () => {
         setUsers(JSONuser)
     }
 
+    // const addPlayer = (player) => {
+    //     setUsers([...users[0].players, player])
+    //     // if(users.players >= 5) {
+    //     //     alert("You've already added 5 players!");
+    //     // } else {
+    //     //     setUsers([...users.players, player])
+    //     // }
+    // }
+
     
 
     useEffect(()=>{
         fetchFixtures()
         fetchFootballData()
         fetchUsers()
+        fetchPlayers()
     },[])
+
     
     useEffect(()=>{
         if(!loading){
@@ -69,6 +87,40 @@ const HomeContainer = () => {
         })
         fetchUsers()
     }
+
+    const createPlayer = async (player) => {
+        const response = await fetch(`http://localhost:8080/players`, {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(player)
+        })
+
+        const savedPlayer = await response.json()
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${1}&playerId=${savedPlayer.id}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}
+        })
+        await fetchUsers()
+        // console.log(savedPlayer);
+        // console.log(backendPlayers);
+        setBackEndPlayers([...backendPlayers,savedPlayer])
+        // console.log(backendPlayers);
+        
+    }
+
+
+
+
+    const addPlayerToUser = async (userId,playerId) => {
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
+            method: "PUT",
+            headers: {'Content-Type': 'application/json'}
+        })
+        fetchUsers()
+        
+    }
+    
+
 
     const teamNames = {
         1:"Arsenal",
@@ -112,7 +164,16 @@ const HomeContainer = () => {
                     <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
                     }/>
                     <Route path="/team" element= {
-                    <Team users={users} playersList={footballData.elements} removePlayer={removePlayer}/>
+                    <Team users={users} 
+                    playersList={footballData.elements} 
+                    removePlayer={removePlayer}
+                    data ={footballData}
+                    createPlayer = {createPlayer}
+                    addPlayerToUser = {addPlayerToUser}
+                    backendPlayers = {backendPlayers}
+                    fetchPlayers={fetchPlayers}
+                    setBackEndPlayers={setBackEndPlayers}
+                    />
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}/>
@@ -126,6 +187,8 @@ const HomeContainer = () => {
             </BrowserRouter>
 
     )
-}
+
+                }
+
 
 export default HomeContainer;
