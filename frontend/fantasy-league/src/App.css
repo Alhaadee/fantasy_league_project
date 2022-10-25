@@ -15,7 +15,7 @@ h1 {
 }
 
 .fixture_card {
-  background-color: beige;
+  background-color: lime;
   border-radius: 5px;
   text-align: center;
   
@@ -96,7 +96,7 @@ ul {
 }
 
 #team-display {
-  background-color: green;
+  background-color: limegreen;
 
 }
 
