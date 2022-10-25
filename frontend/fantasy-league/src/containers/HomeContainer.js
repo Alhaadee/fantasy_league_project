@@ -4,6 +4,9 @@ import Fixtures from "../components/Fixtures";
 import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAlert } from 'react-alert'
 
 const HomeContainer = () => {
 
@@ -62,6 +65,7 @@ const HomeContainer = () => {
         fetchPlayers()
     },[])
 
+
     
     useEffect(()=>{
         if(!loading){
@@ -88,6 +92,8 @@ const HomeContainer = () => {
         fetchUsers()
     }
 
+    const notify = () => toast("Full Team!");
+
     const createPlayer = async (player) => {
         const response = await fetch(`http://localhost:8080/players`, {
             method: "POST",
@@ -110,14 +116,17 @@ const HomeContainer = () => {
 
 
 
-
     const addPlayerToUser = async (userId,playerId) => {
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
-            method: "PUT",
-            headers: {'Content-Type': 'application/json'}
-        })
-        fetchUsers()
-        
+        let targetUser = users.find((user) => user.id === userId)
+        if (targetUser.players.length === 11) {
+            console.log("too many");
+        } else{
+            await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
+                method: "PUT",
+                headers: {'Content-Type': 'application/json'}
+            })
+            fetchUsers()
+        }
     }
     
 
@@ -173,6 +182,7 @@ const HomeContainer = () => {
                     backendPlayers = {backendPlayers}
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
+                    alert = {alert}
                     />
                     }/>
                     <Route path="/leaderboard" element= {

@@ -1,0 +1,69 @@
+{
+  "name": "react-alert",
+  "description": "A simple react alert component",
+  "version": "7.0.3",
+  "author": "Reinaldo Schiehll <rn.schiehll@gmail.com>",
+  "main": "dist/cjs/react-alert.js",
+  "module": "dist/esm/react-alert.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/schiehll/react-alert.git"
+  },
+  "keywords": [
+    "react",
+    "alert",
+    "react-alert",
+    "toaster",
+    "react-toaster",
+    "react-component"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.js",
+    "test": "jest --coverage --no-cache",
+    "test:watch": "jest --watch --coverage --no-cache",
+    "prepublish": "yarn build",
+    "lint": "node_modules/.bin/eslint './src/**/*.js'"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-react": "^7.13.13",
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.5.0",
+    "babel-eslint": "10.0.3",
+    "babel-preset-stage-1": "^6.24.1",
+    "eslint": "^6.5.1",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.1.2",
+    "husky": "^3.0.9",
+    "jest-cli": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "lodash.kebabcase": "^4.1.1",
+    "pascal-case": "^2.0.1",
+    "prettier": "^1.18.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "rollup": "^1.23.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-uglify": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1 || ^17",
+    "react-dom": "^16.8.1 || ^17"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/*.js",
+      "!src/index.js"
+    ]
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.4.1"
+  }
+}

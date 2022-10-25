@@ -2,15 +2,10 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer,backendPlayers,fetchPlayers}) => {
+const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer,backendPlayers,fetchPlayers,alert}) => {
 
-  // const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 
-  // const teamComponents = users.map(user => {
-  //   return user.players.map(player => (
-  //     <li>{player.name} <img src={player.url}></img> </li>
-  // ))
-  // })
+
   let keepersList = users[0].players.filter(player => player.position === 1)
   let defendersList = users[0].players.filter(player => player.position === 2)
   let midfieldersList = users[0].players.filter(player => player.position === 3)
@@ -46,10 +41,15 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
 
   return(
     <>
-    {/* {userComponents} */}
-    {/* <div id="player-list">
-      {teamComponents}
-    </div> */}
+    <div id="user-display">
+      <h3>{users[0].userName}</h3>
+      <h3>{users[0].teamName}</h3>
+      <h3>{users[0].totalPoints}</h3>
+      <h3>{users[0].gameWeekPoints}</h3>
+    
+    </div>
+    
+
     <div id="team-display">
       <div id="keepers">{keepersComponent}</div>
       <div id="defenders">{defendersComponent}</div>
@@ -63,6 +63,8 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     createPlayer = {createPlayer}
     backendPlayers ={backendPlayers}
     fetchPlayers = {fetchPlayers}
+    users = {users}
+    alert = {alert}
     />
     </>
   )

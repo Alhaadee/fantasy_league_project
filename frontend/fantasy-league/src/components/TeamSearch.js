@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import '../App.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAlert } from 'react-alert'
 
-const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
+const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -19,21 +22,31 @@ const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPla
         // }
     }
 
+    const notify = () => toast("too many!");
+
+    const backendPlayersNames = backendPlayers.map(player => player.name)
+
     const handleClick =  (e) => {
         // console.log(e.target.textContent);
         // let copiedplayer = {...selectedPlayer}
         let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
         // await setSelectedPlayers(copiedplayer)
         // console.log(copiedplayer.web_name)
-        createPlayer({
-            name: copiedplayer.web_name,
-            transferValue: copiedplayer.now_cost/ 10,
-            apiid: copiedplayer.id,
-            position: copiedplayer.element_type
-        })
-        
-        // addPlayerToUser(1,backendPlayers.slice(-1).pop().id)
-        // console.log(backendPlayers.at(-1).id)
+        if (users[0].players.length === 11) {
+            alert("You've already got a full team")
+            
+        } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
+            alert("You already have that player")
+        } else{
+            createPlayer({
+                name: copiedplayer.web_name,
+                transferValue: copiedplayer.now_cost/ 10,
+                apiid: copiedplayer.id,
+                position: copiedplayer.element_type
+            })
+        }
+
+    
     }
 
 

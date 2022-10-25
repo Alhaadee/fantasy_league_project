@@ -96,8 +96,8 @@ ul {
 }
 
 #team-display {
-  background-color: green;
-
+  /* background-color: green; */
+  background-image: url("https://johnburnmurdoch.github.io/football-pitch-tracker/half-rotate.png");
 }
 
 #keepers {
