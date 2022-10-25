@@ -38,6 +38,39 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
   ))
   }) 
 
+  // const overallScore = users[0].players.map(player => {
+  //   let count = 0;
+  //   count += player.overallScore
+  //   console.log(count)
+  //   return count;
+  // })
+
+  console.log(users[0].overallScore)
+
+  let transCount = 0;
+  const transferbudget = users[0].players.map(player => {
+    transCount += player.transferValue 
+    // console.log(transCount);
+  })
+
+  let gwScoreCount = 0;
+  const gwScore = users[0].players.map(player => {
+    let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+    console.log(found.event_points)
+    gwScoreCount += found.event_points
+  })
+
+  let ScoreCount = 0;
+  const overallScore = users[0].players.map(player => {
+    let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+    console.log(found.total_points)
+    ScoreCount += found.total_points
+  })
+
+
+
+  // let t2 = 0;
+  // const transferbudget2 = 
 
   return(
     <>
@@ -55,6 +88,18 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
       <div id="defenders">{defendersComponent}</div>
       <div id="midfielders">{midfieldersComponent}</div>
       <div id="strikers">{strikersComponent}</div>
+    </div>
+
+    <div>
+      <h3> Transfer budget: </h3>
+      {100 - transCount}
+
+      <h3> Points this game week: </h3>
+      {gwScoreCount}
+
+      <h3> Total Points: </h3>
+      {ScoreCount}
+
     </div>
 
     <TeamSearch 
