@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../App.css';
 
-const TeamSearch = ({data,createPlayer, addPlayer, backendPlayers}) => {
+const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -20,21 +20,22 @@ const TeamSearch = ({data,createPlayer, addPlayer, backendPlayers}) => {
     }
 
     const handleClick = (e) => {
-        console.log(e.target.textContent);
+        // console.log(e.target.textContent);
         // let copiedplayer = {...selectedPlayer}
-        const copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
-        console.log(copiedplayer)
+        let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
         // await setSelectedPlayers(copiedplayer)
-        console.log(copiedplayer.web_name)
+        // console.log(copiedplayer.web_name)
         createPlayer({
             name: copiedplayer.web_name,
             transferValue: copiedplayer.now_cost/ 10,
             apiid: copiedplayer.id,
             position: copiedplayer.element_type
         })
-        console.log(backendPlayers.slice(-1))
-        addPlayer(1,backendPlayers.slice(-1).pop().id)
+        
+        addPlayerToUser(1,backendPlayers.slice(-1).pop().id)
     }
+
+
 
 
 

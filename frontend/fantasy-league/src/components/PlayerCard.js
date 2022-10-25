@@ -10,14 +10,14 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) =>
       setIsOpen(!isOpen);
     }
 
-    const updateApiPlayer =() =>{
+    const matchApiPlayer =() =>{
         let apiPlayerCopy = {...APIplayer}
         apiPlayerCopy = playersList.find(player => player.id === userplayer.apiid)
         setAPIplayer(apiPlayerCopy)
     }
     
     useEffect(() => {
-      updateApiPlayer()
+      matchApiPlayer()
     }, [])
     
     const imgURL = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${APIplayer.code}.png`;

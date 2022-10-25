@@ -106,7 +106,7 @@ ul {
 }
 
 
-#midfielders,#placeholder-mid {
+#midfielders {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -123,11 +123,11 @@ ul {
   text-align: center;
 }
 
-#placeholder{
+/* #placeholder{
   display: flex;
   justify-content: center;
   padding: 20px;
-}
+} */
 
 
 

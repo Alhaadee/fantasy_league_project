@@ -28,7 +28,7 @@ public class Player {
     private String name;
 
     @Column
-    private String position;
+    private int position;
 
     @Column
     private float transferValue;
@@ -45,7 +45,7 @@ public class Player {
     @Column
     int APIid;
 
-    public Player(String name, String position, float transferValue, String playerImage,int APIid) {
+    public Player(String name, int position, float transferValue, String playerImage,int APIid) {
         this.name = name;
         this.position = position;
         this.transferValue = transferValue;
@@ -77,11 +77,11 @@ public class Player {
         this.name = name;
     }
 
-    public String getPosition() {
+    public int getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(int position) {
         this.position = position;
     }
 
