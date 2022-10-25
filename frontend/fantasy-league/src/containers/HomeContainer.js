@@ -7,6 +7,7 @@ import Team from "../components/Team";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
+import logo from '../components/logo.png'
 
 const HomeContainer = () => {
 
@@ -159,7 +160,7 @@ const HomeContainer = () => {
     return (
             <BrowserRouter>
             <header>
-                <h1>Bright Fantasy League</h1>
+                <img id="logo" src = {logo} alt="Logo" ></img>
                 <nav>
                     <h3><Link to="/">Fixtures</Link></h3>
                     <h3><Link to="/team">Team</Link></h3>
