@@ -14,6 +14,7 @@ import java.util.Objects;
 
 @RestController
 @RequestMapping("/players")
+@CrossOrigin(origins="http://localhost:8080")
 public class PlayerController {
 
     @Autowired
