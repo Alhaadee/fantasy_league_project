@@ -33,7 +33,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
 
   const strikersComponent =
   strikersList.map(striker => (
-    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer}/>
+    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer} key={striker.id}/>
   ))
   
 
