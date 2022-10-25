@@ -4,6 +4,9 @@ import Fixtures from "../components/Fixtures";
 import LeaderBoard from "../components/LeaderBoard";
 import Stats from "../components/Stats";
 import Team from "../components/Team";
+import authService from "../services/auth.service";
+import Login from "../components/Login";
+import Signup from "../components/SignUp";
 
 const HomeContainer = () => {
 
@@ -13,6 +16,19 @@ const HomeContainer = () => {
     const [users , setUsers] = useState([])
     const [loading,setLoading] = useState(true)
     const [playerNames, setPlayerNames] = useState ({})
+     const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = authService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+
+  const logOut = () => {
+    authService.logout();
+  };
     
     
 
@@ -104,12 +120,37 @@ const HomeContainer = () => {
             <BrowserRouter>
             <header>
                 <h1>Bright Fantasy League</h1>
-                <nav>
-                    <h3><Link to="/">Fixtures</Link></h3>
+
+                <nav className="navbar navbar-expand navbar-dark bg-dark">
+                {currentUser ? (
+        <div className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <a href="/login" className="nav-link" onClick={logOut}>
+              Logout
+            </a>
+          </li>
+        </div>
+      ) : (
+        <div className="navbar-nav ms-auto">
+          <li className="nav-item">
+            <Link to={"/login"} className="nav-link">
+              Login
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link to={"/signup"} className="nav-link">
+              Sign up
+            </Link>
+          </li>
+          <h3><Link to="/">Fixtures</Link></h3>
                     <h3><Link to="/team">Team</Link></h3>
                     <h3><Link to="/stats">Stats</Link></h3>
                     <h3><Link to="/leaderBoard">LeaderBoard</Link></h3>
-                </nav>
+        </div>
+      )}
+    </nav>
+               
             </header>
 
                 <Routes> 
@@ -125,11 +166,11 @@ const HomeContainer = () => {
                      <Route path="/stats" element= {
                     <Stats data = {footballData}/>
                     }/>
-                    
+                     <Route path="/login" element={<Login />} />
+                    <Route path="/SignUp" element={<Signup />} />
                 </Routes>
 
             </BrowserRouter>
-
     )
 }
 

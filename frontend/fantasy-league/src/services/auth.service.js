@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const API_URL = "/auth";
+const API_URL = "http://localhost:8080/auth/";
 
 const signup = (email,password) => {
     return axios.post(
-        API_URL + "/signup", {
+        API_URL + "signup", {
             email,
             password,
 
