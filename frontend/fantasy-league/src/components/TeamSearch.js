@@ -52,6 +52,8 @@ const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPla
         )
     })
 
+    
+
 
     return(
         <div>
