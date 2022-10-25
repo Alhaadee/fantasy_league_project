@@ -176,7 +176,9 @@ const HomeContainer = () => {
                     />
                     }/>
                     <Route path="/leaderboard" element= {
-                    <LeaderBoard users ={users}/>
+                    <LeaderBoard users ={users}
+                    data ={footballData}
+                    />
                     }/>
                      <Route path="/stats" element= {
                     <Stats data = {footballData}/>

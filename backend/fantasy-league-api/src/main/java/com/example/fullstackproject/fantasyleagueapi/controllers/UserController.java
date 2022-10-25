@@ -1,6 +1,7 @@
 package com.example.fullstackproject.fantasyleagueapi.controllers;
 
 import com.example.fullstackproject.fantasyleagueapi.models.User;
+import com.example.fullstackproject.fantasyleagueapi.repositories.UserRepository;
 import com.example.fullstackproject.fantasyleagueapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins="http://localhost:8080")
 public class UserController {
 
     @Autowired
     UserService userService;
+
+
 
 
    @GetMapping

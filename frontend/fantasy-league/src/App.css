@@ -2,6 +2,13 @@ nav {
   display: flex;
   justify-content: space-evenly;
 }
+.pages {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
 
 h1 {
   text-align: center;
@@ -25,7 +32,7 @@ h3 {
   padding-bottom: 5px;
 }
 
-.fixtures_component {
+.fixtures_list {
   display: table;
   margin: 0px auto;
 }
@@ -105,6 +112,10 @@ ul {
   align-items: center;
 }
 
+.kickoff {
+  font-weight: bold;
+}
+
 
 #midfielders {
   display: flex;
@@ -129,5 +140,33 @@ ul {
   padding: 20px;
 } */
 
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  cursor: pointer;
+}
+
+.pagination a {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #6c7ac9;
+  color: #6c7ac9;
+}
+
+.pagination__link {
+  font-weight: bold;
+}
+
+.pagination__link--active a {
+  color: #fff;
+  background: #6c7ac9;
+}
+
+.pagination__link--disabled a {
+  color: rgb(198, 197, 202);
+  border: 1px solid rgb(198, 197, 202);
+}
 
 
