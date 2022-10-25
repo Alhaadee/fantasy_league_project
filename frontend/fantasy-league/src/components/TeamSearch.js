@@ -37,10 +37,14 @@ const TeamSearch = ({data,createPlayer, addPlayerToUser, backendPlayers,fetchPla
     }
 
 
+//     let top20Scorers = data.elements.sort((a, b) => b.goals_scored - a.goals_scored);
+//   let topS = top20Scorers.slice(0,20)
+
+//   const topScorers = topS.map((player, key) => {
 
 
 
-    const playerListItems = filteredPlayers.map((player) =>{
+    const playerListItems = filteredPlayers.slice(0,10).map((player) =>{
 
         return (
             // <li>{player.first_name}</li>
