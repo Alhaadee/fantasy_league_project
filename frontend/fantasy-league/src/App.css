@@ -95,6 +95,10 @@ ul {
   gap: 30px;
 }
 
+.team-view {
+  display: flex;
+}
+
 @media screen  {
   #team-display {
   background-color: #29A200;
