@@ -21,12 +21,26 @@ const HomeContainer = () => {
   const [playerNames, setPlayerNames] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
   const [backendPlayers, setBackEndPlayers] = useState([])
+  const [userFinder, setUserFinder] = useState({})
+
+  const userFinderFinder = () =>{
+    if(currentUser){
+    for( let i = 0; i < users.length; i++){
+      if (users[i].email === currentUser.email){
+        setUserFinder(users[i])
+      }
+    }
+  }
+  }
+
+  
 
   useEffect(() => {
     const user = authService.getCurrentUser();
 
     if (user) {
       setCurrentUser(user);
+      
     }
   }, []);
 
@@ -90,8 +104,11 @@ const HomeContainer = () => {
   useEffect(() => {
     if (!loading) {
       createPlayersObj();
+      userFinderFinder();
     }
   }, [loading]);
+
+
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -252,6 +269,7 @@ const HomeContainer = () => {
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
                     alert = {alert}
+                    userFinder = {userFinder}
                     />
                     }/>
                     <Route path="/leaderboard" element= {

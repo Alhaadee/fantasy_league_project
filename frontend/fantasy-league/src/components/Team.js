@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer,backendPlayers,fetchPlayers,alert}) => {
+const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, createPlayer,backendPlayers,fetchPlayers,alert}) => {
 
 
 
-  let keepersList = users[0].players.filter(player => player.position === 1)
-  let defendersList = users[0].players.filter(player => player.position === 2)
-  let midfieldersList = users[0].players.filter(player => player.position === 3)
-  let strikersList = users[0].players.filter(player => player.position === 4)
+  let keepersList = userFinder.players.filter(player => player.position === 1)
+  let defendersList = userFinder.players.filter(player => player.position === 2)
+  let midfieldersList = userFinder.players.filter(player => player.position === 3)
+  let strikersList = userFinder.players.filter(player => player.position === 4)
 
   const keepersComponent = 
     keepersList.map(keeper => (
@@ -45,23 +45,23 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
   //   return count;
   // })
 
-  console.log(users[0].overallScore)
+  console.log(userFinder.overallScore)
 
   let transCount = 0;
-  const transferbudget = users[0].players.map(player => {
+  const transferbudget = userFinder.players.map(player => {
     transCount += player.transferValue 
     // console.log(transCount);
   })
 
   let gwScoreCount = 0;
-  const gwScore = users[0].players.map(player => {
+  const gwScore = userFinder.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
     console.log(found.event_points)
     gwScoreCount += found.event_points
   })
 
   let ScoreCount = 0;
-  const overallScore = users[0].players.map(player => {
+  const overallScore = userFinder.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
     console.log(found.total_points)
     ScoreCount += found.total_points
@@ -75,10 +75,10 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
   return(
     <>
     <div id="user-display">
-      <h3>{users[0].userName}</h3>
-      <h3>{users[0].teamName}</h3>
-      <h3>{users[0].totalPoints}</h3>
-      <h3>{users[0].gameWeekPoints}</h3>
+      <h3>{userFinder.userName}</h3>
+      <h3>{userFinder.teamName}</h3>
+      <h3>{userFinder.totalPoints}</h3>
+      <h3>{userFinder.gameWeekPoints}</h3>
     
     </div>
     
