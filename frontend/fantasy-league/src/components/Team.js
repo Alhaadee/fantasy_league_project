@@ -11,6 +11,8 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
   let midfieldersList = trueUser.players.filter(player => player.position === 3)
   let strikersList = trueUser.players.filter(player => player.position === 4)
 
+  console.log(trueUser);
+
   const keepersComponent = 
     keepersList.map(keeper => (
       <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id}/>

@@ -26,7 +26,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
     const backendPlayersNames = backendPlayers.map(player => player.name)
 
-    const handleClick =  (e) => {
+    const handleClick =  async (e) => {
         // console.log(e.target.textContent);
         // let copiedplayer = {...selectedPlayer}
         let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
@@ -38,8 +38,8 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
         } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
             alert("You already have that player")
         } else{
-            findTrueUser();
-            createPlayer({
+             findTrueUser();
+             createPlayer({
                 name: copiedplayer.web_name,
                 transferValue: copiedplayer.now_cost/ 10,
                 apiid: copiedplayer.id,

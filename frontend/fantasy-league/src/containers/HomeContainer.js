@@ -33,7 +33,6 @@ const HomeContainer = () => {
   }
   }
 
-  
 
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -144,33 +143,27 @@ const HomeContainer = () => {
             body: JSON.stringify(player)
         })
 
+        console.log(trueUser);
+
         const savedPlayer = await response.json()
         await fetch(`http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'}
         })
         await fetchUsers()
+        console.log(users);
         // console.log(savedPlayer);
+        const newUser = trueUser
+        const newPlayer = player
+        newPlayer.id=newUser.players.length + 1
+        newUser.players.push(player)
+        setTrueUser(newUser)
         // console.log(backendPlayers);
-        setBackEndPlayers([...backendPlayers,savedPlayer])
+        // setBackEndPlayers(newPlayers)
         // console.log(backendPlayers);
         
     }
 
-
-
-    // const addPlayerToUser = async (userId,playerId) => {
-    //     let targetUser = users.find((user) => user.id === userId)
-    //     if (targetUser.players.length === 11) {
-    //         console.log("too many");
-    //     } else{
-    //         await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
-    //             method: "PUT",
-    //             headers: {'Content-Type': 'application/json'}
-    //         })
-    //         fetchUsers()
-    //     }
-    // }
     
 
 
