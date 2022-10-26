@@ -21,12 +21,25 @@ const HomeContainer = () => {
   const [playerNames, setPlayerNames] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
   const [backendPlayers, setBackEndPlayers] = useState([])
+  const [trueUser, setTrueUser] = useState({})
+
+  const findTrueUser = () =>{
+    if(currentUser){
+    for( let i = 0; i < users.length; i++){
+      if (users[i].email === currentUser.email){
+        setTrueUser(users[i])
+      }
+    }
+  }
+  }
+
 
   useEffect(() => {
     const user = authService.getCurrentUser();
 
     if (user) {
       setCurrentUser(user);
+      
     }
   }, []);
 
@@ -90,8 +103,11 @@ const HomeContainer = () => {
   useEffect(() => {
     if (!loading) {
       createPlayersObj();
+      findTrueUser();
+      
     }
   }, [loading]);
+
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -105,54 +121,53 @@ const HomeContainer = () => {
     }
   };
 
-  const removePlayer = async (userId, playerId) => {
+  const removePlayer = async (trueUser, removedPlayer) => {
     await fetch(
-      `http://localhost:8080/user/removePlayer?userId=${userId}&playerId=${playerId}`,
+      `http://localhost:8080/user/removePlayer?userId=${trueUser.userId}&playerId=${removedPlayer.id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
       }
     );
-    fetchUsers();
+    await fetchUsers();
+
+    const newUser = {...trueUser}
+    newUser.players = newUser.players.filter(player=>player.id !== removedPlayer.id)
+    setTrueUser(newUser)
+    console.log(newUser);
+
   };
 
 
     const notify = () => toast("Full Team!");
 
-    const createPlayer = async (player) => {
+    const createPlayer = async (player, trueUser) => {
         const response = await fetch(`http://localhost:8080/players`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(player)
         })
 
+       
+
         const savedPlayer = await response.json()
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${1}&playerId=${savedPlayer.id}`, {
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'}
         })
         await fetchUsers()
         // console.log(savedPlayer);
+        const newUser = trueUser
+        const newPlayer = player
+        newPlayer.id=newUser.players.length + 1
+        newUser.players.push(player)
+        setTrueUser(newUser)
         // console.log(backendPlayers);
-        setBackEndPlayers([...backendPlayers,savedPlayer])
+        // setBackEndPlayers(newPlayers)
         // console.log(backendPlayers);
         
     }
 
-
-
-    const addPlayerToUser = async (userId,playerId) => {
-        let targetUser = users.find((user) => user.id === userId)
-        if (targetUser.players.length === 11) {
-            console.log("too many");
-        } else{
-            await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
-                method: "PUT",
-                headers: {'Content-Type': 'application/json'}
-            })
-            fetchUsers()
-        }
-    }
     
 
 
@@ -246,11 +261,12 @@ const HomeContainer = () => {
                     removePlayer={removePlayer}
                     data ={footballData}
                     createPlayer = {createPlayer}
-                    addPlayerToUser = {addPlayerToUser}
                     backendPlayers = {backendPlayers}
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
                     alert = {alert}
+                    trueUser = {trueUser}
+                    findTrueUser = {findTrueUser}
                     teamNames = {teamNames}
                     />
                     }/>

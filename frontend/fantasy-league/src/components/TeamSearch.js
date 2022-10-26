@@ -6,7 +6,7 @@ import { useAlert } from 'react-alert'
 import PlayerInfo from "./PlayerInfo";
 
 
-const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers, teamNames}) => {
+const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, backendPlayers,fetchPlayers,setBackEndPlayers, teamNames}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -30,7 +30,30 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
 
     const backendPlayersNames = backendPlayers.map(player => player.name)
 
+    const handleClick =  async (e) => {
+        // console.log(e.target.textContent);
+        // let copiedplayer = {...selectedPlayer}
+        let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
+        // await setSelectedPlayers(copiedplayer)
+        // console.log(copiedplayer.web_name)
+        if (trueUser.players.length === 11) {
+            alert("You've already got a full team")
+            
+        } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
+            alert("You already have that player")
+        } else{
+             findTrueUser();
+             createPlayer({
+                name: copiedplayer.web_name,
+                transferValue: copiedplayer.now_cost/ 10,
+                apiid: copiedplayer.id,
+                position: copiedplayer.element_type
+            }, trueUser)
+            
+        }
 
+    
+    }
 
 
 //     let top20Scorers = data.elements.sort((a, b) => b.goals_scored - a.goals_scored);
@@ -40,16 +63,15 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
 
 
 
-    const playerListItems = filteredPlayers.slice(0,10).map((player) =>{
+    const playerListItems = filteredPlayers.slice(0,10).map((player, index) =>{
 
         return (
             // <li>{player.first_name}</li>
-            // {show ? <li onClick={()=> setShow(true)}>Clue 1 = Area: {hidden.population} km<sup>2</sup></li> :null}
+           
 
             // <li onClick={handleClick}>{player.web_name}</li>
             <li onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
 
-            // {show ? <li>{player.web_name}</li setShow(true)}>
         )
     })
 
@@ -76,7 +98,7 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
 
         <br></br>
 
-        <input type="text" value={search} onChange={handleSearch}/>
+        <input id="player-list" type="text" value={search} onChange={handleSearch}/>
             
             {playerListItems}
 

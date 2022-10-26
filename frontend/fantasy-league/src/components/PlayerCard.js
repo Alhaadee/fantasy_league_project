@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) => {
+const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty,trueUser,findTrueUser}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -23,7 +23,8 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) =>
     const imgURL = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${APIplayer.code}.png`;
 
     const handleRemovePlayer = () => {
-        removePlayer(1,userplayer.id)
+        findTrueUser();
+        removePlayer(trueUser,userplayer)
 
     }
 
