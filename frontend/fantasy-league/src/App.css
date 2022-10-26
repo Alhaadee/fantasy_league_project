@@ -98,9 +98,12 @@ ul {
   #team-display {
   background-color: #29A200;
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Football_field.svg/1200px-Football_field.svg.png");
-  background-size: 1024px;
+  background-size: 1024px; 
+  /* 1024px */
   background-position: center;
   background-repeat: no-repeat;
+  min-height: 1300px;
+
 }
 #logo {
   margin-left: auto;
@@ -108,6 +111,10 @@ ul {
   display: block;
   width: 30%;
 }
+}
+
+#team-display div{
+  min-height: 340px;
 }
 
 #header {

@@ -89,10 +89,13 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     
 
     <div id="team-display">
-      <div id="keepers">{keepersComponent}</div>
-      <div id="defenders">{defendersComponent}</div>
-      <div id="midfielders">{midfieldersComponent}</div>
-      <div id="strikers">{strikersComponent}</div>
+      <h3>Current Team</h3>
+      <div id="team-component">
+        <div id="keepers">{keepersComponent}</div>
+        <div id="defenders">{defendersComponent}</div>
+        <div id="midfielders">{midfieldersComponent}</div>
+        <div id="strikers">{strikersComponent}</div>
+      </div>
     </div>
 
 
