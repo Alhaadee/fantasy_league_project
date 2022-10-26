@@ -34,6 +34,7 @@ export default function LeaderBoard({users,data}) {
   
     return (
       <div>
+        <h3>Current League Standings</h3>
       <table>
       <tr>
         <th>Name</th>

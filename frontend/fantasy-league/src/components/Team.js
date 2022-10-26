@@ -77,30 +77,23 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     <div id="user-display">
       <h3>{users[0].userName}</h3>
       <h3>{users[0].teamName}</h3>
-      <h3>{users[0].totalPoints}</h3>
-      <h3>{users[0].gameWeekPoints}</h3>
-    
+      <h3> Transfer budget: </h3>
+      {100 - transCount}
+      <h3> Points this game week: </h3>
+      {gwScoreCount}
+      <h3> Total Points: </h3>
+      {ScoreCount}
     </div>
     
 
     <div id="team-display">
+      <h3>Current Team</h3>
       <div id="keepers">{keepersComponent}</div>
       <div id="defenders">{defendersComponent}</div>
       <div id="midfielders">{midfieldersComponent}</div>
       <div id="strikers">{strikersComponent}</div>
     </div>
 
-    <div>
-      <h3> Transfer budget: </h3>
-      {100 - transCount}
-
-      <h3> Points this game week: </h3>
-      {gwScoreCount}
-
-      <h3> Total Points: </h3>
-      {ScoreCount}
-
-    </div>
 
     <TeamSearch 
     data ={data}

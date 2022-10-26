@@ -181,11 +181,10 @@ const HomeContainer = () => {
 
   return (
     <BrowserRouter>
-      <header>
+      <header id="header">
       <img id="logo" src = {logo} alt="Logo" ></img>
-        <h1>Bright Fantasy League</h1>
 
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
               <li className="nav-item">
