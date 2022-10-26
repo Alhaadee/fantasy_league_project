@@ -5,6 +5,7 @@ import com.example.fullstackproject.fantasyleagueapi.models.User;
 import com.example.fullstackproject.fantasyleagueapi.repositories.PlayerRepository;
 import com.example.fullstackproject.fantasyleagueapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class UserService {
 
     public User addNewUser(User user){
         user.setTransferBudget(100.00F);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String password = passwordEncoder.encode(user.getPassword());
+        user.setPassword(password);
         userRepository.save(user);
         return user;
     }
