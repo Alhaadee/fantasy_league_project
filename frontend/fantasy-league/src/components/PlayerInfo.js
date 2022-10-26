@@ -1,8 +1,8 @@
 
 
-const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, teamNames}) => {
+const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, teamNames, findTrueUser, trueUser}) => {
 
-    const backendPlayersNames = backendPlayers.map(player => player.name)
+    const trueUserNames = trueUser.players.map(player => player.name)
 
     const handleClick =  (e) => {
         // console.log(e.target.textContent);
@@ -10,18 +10,19 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
         let copiedplayer = (data.elements.find((player) => player.web_name === searchedPlayer.web_name))
         // await setSelectedPlayers(copiedplayer)
         console.log(copiedplayer)
-        if (users[0].players.length === 11) {
+        if (trueUser.players.length === 11) {
             alert("You've already got a full team")
             
-        } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
+        } else if (trueUserNames.includes(copiedplayer.web_name)) {
             alert("You already have that player")
         } else{
+            findTrueUser();
             createPlayer({
                 name: copiedplayer.web_name,
                 transferValue: copiedplayer.now_cost,
                 apiid: copiedplayer.id,
                 position: copiedplayer.element_type
-            })
+            },trueUser)
         }
     }
    
