@@ -94,11 +94,37 @@ ul {
   grid-template-columns: repeat(5, 1fr);
   gap: 30px;
 }
-
-#team-display {
-  /* background-color: green; */
-  background-image: url("https://johnburnmurdoch.github.io/football-pitch-tracker/half-rotate.png");
+@media screen  {
+  #team-display {
+  background-color: #29A200;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Football_field.svg/1200px-Football_field.svg.png");
+  background-size: 1024px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
+#logo {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 30%;
+}
+}
+
+#header {
+  background-color:#5BE7C4;
+}
+
+#user-display h3{
+display: inline-block;
+padding: 5px;
+
+}
+
+#user-display {
+  text-align: center;
+  align-content: center;
+}
+
 
 #keepers {
   display: flex;
@@ -132,8 +158,12 @@ ul {
 #player-card{
   align-items: center;
   text-align: center;
+  
 }
 
+#player-card img{
+  height: 200px;
+}
 /* #placeholder{
   display: flex;
   justify-content: center;
@@ -169,4 +199,22 @@ ul {
   border: 1px solid rgb(198, 197, 202);
 }
 
+#info-button {
+  background-color: #e80f244c;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+#remove-button{
+  background-color: #e80f2500;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
 

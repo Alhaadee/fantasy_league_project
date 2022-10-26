@@ -35,15 +35,18 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) =>
         <>
         <div id="player-card">
             <img src={imgURL}></img>
-            <h3>{APIplayer.web_name}</h3>
-            <h4>{APIplayer.total_points}</h4>
+            <h3>{APIplayer.web_name}              
             <input
                 type="button"
                 value="ℹ"
                 onClick={togglePopup}
+                id="info-button"
             />
-            {isOpen && <PlayerPopUp player={APIplayer} handleClose={togglePopup}/>}
-            <button onClick={handleRemovePlayer}>ⅹ</button>
+            {isOpen && <PlayerPopUp player={APIplayer} handleClose={togglePopup}/>}</h3>
+
+            <h4>{APIplayer.total_points} </h4>
+
+            <button onClick={handleRemovePlayer} id="remove-button">❌</button>
             
         </div>
         </>

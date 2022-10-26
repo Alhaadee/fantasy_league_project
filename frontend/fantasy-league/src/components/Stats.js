@@ -68,7 +68,7 @@ const Stats = ({ data }) => {
     return (
        
           <tr key={key}>
-            <td>{player.first_name} {player.second_name}</td>
+            <td>{player.first_name} {player.web_name}</td>
             <td>{teamNames[player.team]}</td>
             <td>{player.saves}</td>
 

@@ -159,7 +159,7 @@ const HomeContainer = () => {
 
     return (
             <BrowserRouter>
-            <header>
+            <header id="header">
                 <img id="logo" src = {logo} alt="Logo" ></img>
                 <nav>
                     <h3><Link to="/">Fixtures</Link></h3>
