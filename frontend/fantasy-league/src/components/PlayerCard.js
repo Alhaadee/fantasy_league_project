@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PlayerPopUp from "./PlayerPopUp";
 
-const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
+const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty}) => {
 
     const [isOpen,setIsOpen] = useState(false)
     const [APIplayer,setAPIplayer] = useState({})
@@ -10,21 +10,25 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users}) => {
       setIsOpen(!isOpen);
     }
 
-    const updateApiPlayer =() =>{
+    const matchApiPlayer =() =>{
         let apiPlayerCopy = {...APIplayer}
         apiPlayerCopy = playersList.find(player => player.id === userplayer.apiid)
         setAPIplayer(apiPlayerCopy)
     }
     
     useEffect(() => {
-      updateApiPlayer()
+      matchApiPlayer()
     }, [])
     
     const imgURL = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${APIplayer.code}.png`;
 
     const handleRemovePlayer = () => {
         removePlayer(1,userplayer.id)
+
     }
+
+
+
 
 
     return (
