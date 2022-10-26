@@ -7,6 +7,10 @@ import Team from "../components/Team";
 import authService from "../services/auth.service";
 import Login from "../components/Login";
 import Signup from "../components/SignUp";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAlert } from 'react-alert'
+import logo from '../components/logo.png'
 
 const HomeContainer = () => {
   const [fixtures, setFixtures] = useState([]);
@@ -112,6 +116,9 @@ const HomeContainer = () => {
     fetchUsers();
   };
 
+
+    const notify = () => toast("Full Team!");
+
     const createPlayer = async (player) => {
         const response = await fetch(`http://localhost:8080/players`, {
             method: "POST",
@@ -134,14 +141,17 @@ const HomeContainer = () => {
 
 
 
-
     const addPlayerToUser = async (userId,playerId) => {
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
-            method: "PUT",
-            headers: {'Content-Type': 'application/json'}
-        })
-        fetchUsers()
-        
+        let targetUser = users.find((user) => user.id === userId)
+        if (targetUser.players.length === 11) {
+            console.log("too many");
+        } else{
+            await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
+                method: "PUT",
+                headers: {'Content-Type': 'application/json'}
+            })
+            fetchUsers()
+        }
     }
     
 
@@ -172,6 +182,7 @@ const HomeContainer = () => {
   return (
     <BrowserRouter>
       <header>
+      <img id="logo" src = {logo} alt="Logo" ></img>
         <h1>Bright Fantasy League</h1>
 
         <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -240,10 +251,13 @@ const HomeContainer = () => {
                     backendPlayers = {backendPlayers}
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
+                    alert = {alert}
                     />
                     }/>
                     <Route path="/leaderboard" element= {
-                    <LeaderBoard users ={users}/>
+                    <LeaderBoard users ={users}
+                    data ={footballData}
+                    />
                     }/>
                      <Route path="/stats" element= {
                     <Stats data = {footballData}/>
