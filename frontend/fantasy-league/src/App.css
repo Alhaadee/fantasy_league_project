@@ -68,8 +68,8 @@ ul {
   margin-top: calc(100vh - 85vh - 20px);
   background: #fff;
   border-radius: 4px;
-  padding: 20px;
-  border: 1px solid #999;
+  padding: 10px;
+  border: 5px solid #999;
   overflow: auto;
 }
  
@@ -95,6 +95,10 @@ ul {
   gap: 30px;
 }
 
+.team-view {
+  display: flex;
+}
+
 @media screen  {
   #team-display {
   background-color: #29A200;
@@ -105,7 +109,7 @@ ul {
   background-repeat: no-repeat;
   min-height: 1300px;
   text-align: center;
-
+  
 }
 #logo {
   margin-left: auto;
@@ -113,8 +117,17 @@ ul {
   display: block;
   width: 30%;
 }
+
 }
 
+#player-list li{
+  text-align: center;
+  align-items: center;
+}
+#player-info {
+  text-align: center;
+  align-items: center;
+}
 #team-display div{
   min-height: 350px;
 }
@@ -257,4 +270,3 @@ ul {
   right: 10px;
   padding: 5px 7px;
 }
-

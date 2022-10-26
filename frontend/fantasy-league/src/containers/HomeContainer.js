@@ -267,6 +267,7 @@ const HomeContainer = () => {
                     alert = {alert}
                     trueUser = {trueUser}
                     findTrueUser = {findTrueUser}
+                    teamNames = {teamNames}
                     />
                     }/>
                     <Route path="/leaderboard" element= {

@@ -3,12 +3,16 @@ import '../App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
+import PlayerInfo from "./PlayerInfo";
 
-const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
+
+const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, backendPlayers,fetchPlayers,setBackEndPlayers, teamNames}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
     // const [selectedPlayer,setSelectedPlayers] = useState(null)
+    const [searchedPlayer, setSearchedplayer] = useState(null)
+    
     
 
     
@@ -63,7 +67,11 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
         return (
             // <li>{player.first_name}</li>
-            <li key={index} onClick={handleClick}>{player.web_name}</li>
+           
+
+            // <li onClick={handleClick}>{player.web_name}</li>
+            <li onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
+
         )
     })
 
@@ -72,9 +80,27 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
     return(
         <div>
-            <input type="text" value={search} onChange={handleSearch}/>
             
-        {playerListItems}
+
+        <br></br>
+        <br></br>
+
+
+        { searchedPlayer ? <PlayerInfo  
+        searchedPlayer = {searchedPlayer}
+        teamNames = {teamNames}
+        data ={data}
+        users = {users}
+        createPlayer = {createPlayer}
+        backendPlayers = {backendPlayers}/> : <></>}
+
+        <br></br>
+
+        <br></br>
+
+        <input id="player-list" type="text" value={search} onChange={handleSearch}/>
+            
+            {playerListItems}
 
         </div>
     )

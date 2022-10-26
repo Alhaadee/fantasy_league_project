@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert}) => {
+const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert, teamNames}) => {
 
 
 
@@ -51,7 +51,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
 
   let transCount = 0;
   const transferbudget = trueUser.players.map(player => {
-    transCount += player.transferValue 
+    transCount += player.transferValue/10 
     // console.log(transCount);
   })
 
@@ -75,7 +75,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
   // const transferbudget2 = 
 
   return(
-    <>
+    <section class = "team-section">
     <div id="user-display">
       <h3>{trueUser.userName}</h3>
       <h3>{trueUser.teamName}</h3>
@@ -86,28 +86,31 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
     
     </div>
     
+    <div class = "team-view">
+      <div id="team-display">
+        <h3>Current Team</h3>
+        <div id="keepers">{keepersComponent}</div>
+        <div id="defenders">{defendersComponent}</div>
+        <div id="midfielders">{midfieldersComponent}</div>
+        <div id="strikers">{strikersComponent}</div>
+      </div>
 
-    <div id="team-display">
-      <h3>Current Team</h3>
-      <div id="keepers">{keepersComponent}</div>
-      <div id="defenders">{defendersComponent}</div>
-      <div id="midfielders">{midfieldersComponent}</div>
-      <div id="strikers">{strikersComponent}</div>
+      <div id="right-section">
+      <TeamSearch 
+      data ={data}
+      
+      createPlayer = {createPlayer}
+      backendPlayers ={backendPlayers}
+      fetchPlayers = {fetchPlayers}
+      users = {users}
+      alert = {alert}
+      teamNames = {teamNames}
+      trueUser = {trueUser}
+      findTrueUser = {findTrueUser}
+      />
+      </div>
     </div>
-
-
-    <TeamSearch 
-    data ={data}
-    
-    createPlayer = {createPlayer}
-    backendPlayers ={backendPlayers}
-    fetchPlayers = {fetchPlayers}
-    users = {users}
-    alert = {alert}
-    trueUser = {trueUser}
-    findTrueUser = {findTrueUser}
-    />
-    </>
+    </section>
   )
 
 
