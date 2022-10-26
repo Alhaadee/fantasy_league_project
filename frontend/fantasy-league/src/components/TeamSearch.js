@@ -6,7 +6,7 @@ import { useAlert } from 'react-alert'
 import PlayerInfo from "./PlayerInfo";
 
 
-const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
+const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers, teamNames}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -60,8 +60,13 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
         <div>
             
 
+        <br></br>
+        <br></br>
+
+
         { searchedPlayer ? <PlayerInfo  
         searchedPlayer = {searchedPlayer}
+        teamNames = {teamNames}
         data ={data}
         users = {users}
         createPlayer = {createPlayer}

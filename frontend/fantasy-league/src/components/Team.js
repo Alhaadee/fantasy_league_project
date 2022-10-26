@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer,backendPlayers,fetchPlayers,alert}) => {
+const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer,backendPlayers,fetchPlayers,alert, teamNames}) => {
 
 
 
@@ -49,7 +49,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
 
   let transCount = 0;
   const transferbudget = users[0].players.map(player => {
-    transCount += player.transferValue 
+    transCount += player.transferValue/10
     // console.log(transCount);
   })
 
@@ -103,6 +103,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     fetchPlayers = {fetchPlayers}
     users = {users}
     alert = {alert}
+    teamNames = {teamNames}
     />
     </div>
     </div>
