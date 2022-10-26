@@ -251,6 +251,7 @@ const HomeContainer = () => {
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
                     alert = {alert}
+                    teamNames = {teamNames}
                     />
                     }/>
                     <Route path="/leaderboard" element= {
