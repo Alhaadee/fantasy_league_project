@@ -73,7 +73,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
   // const transferbudget2 = 
 
   return(
-    <>
+    <section class = "team-section">
     <div id="user-display">
       <h3>{users[0].userName}</h3>
       <h3>{users[0].teamName}</h3>
@@ -85,7 +85,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
       {ScoreCount}
     </div>
     
-
+    <div class = "team-view">
     <div id="team-display">
       <h3>Current Team</h3>
       <div id="keepers">{keepersComponent}</div>
@@ -94,7 +94,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
       <div id="strikers">{strikersComponent}</div>
     </div>
 
-
+    <div id="right-section">
     <TeamSearch 
     data ={data}
     addPlayerToUser = {addPlayerToUser}
@@ -104,7 +104,9 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     users = {users}
     alert = {alert}
     />
-    </>
+    </div>
+    </div>
+    </section>
   )
 
 
