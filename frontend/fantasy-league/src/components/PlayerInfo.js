@@ -31,19 +31,19 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
     return(
         <div id="country-detail">
             <h4>{searchedPlayer.first_name} {searchedPlayer.second_name}</h4>
-            <ul>
+            
                 <img src={imgURL}></img>
-                <li>Team: {teamNames[searchedPlayer.team]}</li>
-                <li>Cost: {searchedPlayer.now_cost/10}</li>
-                <li>Current form: {searchedPlayer.form}</li>
-                <li>Points this game week: {searchedPlayer.event_points}</li>
-                <li>Total points: {searchedPlayer.total_points}</li>
-                <li>Goals scored: {searchedPlayer.goals_scored}</li>
-                <li>Total Assists: {searchedPlayer.assists}</li>
-                <li>Total Saves: {searchedPlayer.saves}</li>
-                <li>Clean Sheets: {searchedPlayer.clean_sheets}</li>
+                Team: {teamNames[searchedPlayer.team]} <br></br>
+                Cost: {searchedPlayer.now_cost/10} <br></br>
+                Current form: {searchedPlayer.form} <br></br>
+                Points this game week: {searchedPlayer.event_points} <br></br>
+                Total points: {searchedPlayer.total_points} <br></br>
+                Goals scored: {searchedPlayer.goals_scored} <br></br>
+                Total Assists: {searchedPlayer.assists} <br></br>
+                Total Saves: {searchedPlayer.saves} <br></br>
+                Clean Sheets: {searchedPlayer.clean_sheets} <br></br>
 
-            </ul>
+            
             <button onClick={handleClick}>Add to team!</button>
         </div>
     )
