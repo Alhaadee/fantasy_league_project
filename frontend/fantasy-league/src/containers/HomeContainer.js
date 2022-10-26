@@ -108,7 +108,7 @@ const HomeContainer = () => {
     }
   }, [loading]);
 
-
+ console.log(userFinder)
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -136,7 +136,7 @@ const HomeContainer = () => {
 
     const notify = () => toast("Full Team!");
 
-    const createPlayer = async (player) => {
+    const createPlayer = async (player, userFinder) => {
         const response = await fetch(`http://localhost:8080/players`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -144,7 +144,7 @@ const HomeContainer = () => {
         })
 
         const savedPlayer = await response.json()
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${1}&playerId=${savedPlayer.id}`, {
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${userFinder.userId}&playerId=${savedPlayer.id}`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'}
         })
@@ -158,18 +158,18 @@ const HomeContainer = () => {
 
 
 
-    const addPlayerToUser = async (userId,playerId) => {
-        let targetUser = users.find((user) => user.id === userId)
-        if (targetUser.players.length === 11) {
-            console.log("too many");
-        } else{
-            await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
-                method: "PUT",
-                headers: {'Content-Type': 'application/json'}
-            })
-            fetchUsers()
-        }
-    }
+    // const addPlayerToUser = async (userId,playerId) => {
+    //     let targetUser = users.find((user) => user.id === userId)
+    //     if (targetUser.players.length === 11) {
+    //         console.log("too many");
+    //     } else{
+    //         await fetch(`http://localhost:8080/user/addPlayer?userId=${userId}&playerId=${playerId}`, {
+    //             method: "PUT",
+    //             headers: {'Content-Type': 'application/json'}
+    //         })
+    //         fetchUsers()
+    //     }
+    // }
     
 
 
@@ -264,7 +264,6 @@ const HomeContainer = () => {
                     removePlayer={removePlayer}
                     data ={footballData}
                     createPlayer = {createPlayer}
-                    addPlayerToUser = {addPlayerToUser}
                     backendPlayers = {backendPlayers}
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
@@ -275,6 +274,7 @@ const HomeContainer = () => {
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}
                     data ={footballData}
+                    userFinder ={userFinder}
                     />
                     }/>
                      <Route path="/stats" element= {

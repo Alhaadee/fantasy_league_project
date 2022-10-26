@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
 
-const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
+const TeamSearch = ({data,createPlayer, users,alert, userFinder, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -32,7 +32,7 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
         let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
         // await setSelectedPlayers(copiedplayer)
         // console.log(copiedplayer.web_name)
-        if (users[0].players.length === 11) {
+        if (userFinder.players.length === 11) {
             alert("You've already got a full team")
             
         } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
@@ -43,7 +43,7 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
                 transferValue: copiedplayer.now_cost/ 10,
                 apiid: copiedplayer.id,
                 position: copiedplayer.element_type
-            })
+            }, userFinder)
         }
 
     

@@ -45,7 +45,7 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
   //   return count;
   // })
 
-  console.log(userFinder.overallScore)
+  
 
   let transCount = 0;
   const transferbudget = userFinder.players.map(player => {
@@ -56,14 +56,14 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
   let gwScoreCount = 0;
   const gwScore = userFinder.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-    console.log(found.event_points)
+    
     gwScoreCount += found.event_points
   })
 
   let ScoreCount = 0;
   const overallScore = userFinder.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-    console.log(found.total_points)
+    
     ScoreCount += found.total_points
   })
 
@@ -104,12 +104,13 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
 
     <TeamSearch 
     data ={data}
-    addPlayerToUser = {addPlayerToUser}
+    
     createPlayer = {createPlayer}
     backendPlayers ={backendPlayers}
     fetchPlayers = {fetchPlayers}
     users = {users}
     alert = {alert}
+    userFinder = {userFinder}
     />
     </>
   )
