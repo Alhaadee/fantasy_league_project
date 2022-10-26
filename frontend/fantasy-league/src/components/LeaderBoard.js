@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function LeaderBoard({users,data, userFinder}) {
+export default function LeaderBoard({users,data}) {
 
 
 

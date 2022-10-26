@@ -21,13 +21,13 @@ const HomeContainer = () => {
   const [playerNames, setPlayerNames] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
   const [backendPlayers, setBackEndPlayers] = useState([])
-  const [userFinder, setUserFinder] = useState({})
+  const [trueUser, setTrueUser] = useState({})
 
-  const userFinderFinder = () =>{
+  const findTrueUser = () =>{
     if(currentUser){
     for( let i = 0; i < users.length; i++){
       if (users[i].email === currentUser.email){
-        setUserFinder(users[i])
+        setTrueUser(users[i])
       }
     }
   }
@@ -104,11 +104,12 @@ const HomeContainer = () => {
   useEffect(() => {
     if (!loading) {
       createPlayersObj();
-      userFinderFinder();
+      findTrueUser();
+      
     }
   }, [loading]);
 
- console.log(userFinder)
+ console.log(trueUser)
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -122,9 +123,9 @@ const HomeContainer = () => {
     }
   };
 
-  const removePlayer = async (userId, playerId) => {
+  const removePlayer = async (trueUser, playerId) => {
     await fetch(
-      `http://localhost:8080/user/removePlayer?userId=${userId}&playerId=${playerId}`,
+      `http://localhost:8080/user/removePlayer?userId=${trueUser.userId}&playerId=${playerId}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -136,7 +137,7 @@ const HomeContainer = () => {
 
     const notify = () => toast("Full Team!");
 
-    const createPlayer = async (player, userFinder) => {
+    const createPlayer = async (player, trueUser) => {
         const response = await fetch(`http://localhost:8080/players`, {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
@@ -144,7 +145,7 @@ const HomeContainer = () => {
         })
 
         const savedPlayer = await response.json()
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${userFinder.userId}&playerId=${savedPlayer.id}`, {
+        await fetch(`http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`, {
             method: "PUT",
             headers: {'Content-Type': 'application/json'}
         })
@@ -268,13 +269,13 @@ const HomeContainer = () => {
                     fetchPlayers={fetchPlayers}
                     setBackEndPlayers={setBackEndPlayers}
                     alert = {alert}
-                    userFinder = {userFinder}
+                    trueUser = {trueUser}
+                    findTrueUser = {findTrueUser}
                     />
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}
                     data ={footballData}
-                    userFinder ={userFinder}
                     />
                     }/>
                      <Route path="/stats" element= {

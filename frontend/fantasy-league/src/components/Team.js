@@ -2,14 +2,14 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, createPlayer,backendPlayers,fetchPlayers,alert}) => {
+const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert}) => {
 
 
 
-  let keepersList = userFinder.players.filter(player => player.position === 1)
-  let defendersList = userFinder.players.filter(player => player.position === 2)
-  let midfieldersList = userFinder.players.filter(player => player.position === 3)
-  let strikersList = userFinder.players.filter(player => player.position === 4)
+  let keepersList = trueUser.players.filter(player => player.position === 1)
+  let defendersList = trueUser.players.filter(player => player.position === 2)
+  let midfieldersList = trueUser.players.filter(player => player.position === 3)
+  let strikersList = trueUser.players.filter(player => player.position === 4)
 
   const keepersComponent = 
     keepersList.map(keeper => (
@@ -48,20 +48,20 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
   
 
   let transCount = 0;
-  const transferbudget = userFinder.players.map(player => {
+  const transferbudget = trueUser.players.map(player => {
     transCount += player.transferValue 
     // console.log(transCount);
   })
 
   let gwScoreCount = 0;
-  const gwScore = userFinder.players.map(player => {
+  const gwScore = trueUser.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
     
     gwScoreCount += found.event_points
   })
 
   let ScoreCount = 0;
-  const overallScore = userFinder.players.map(player => {
+  const overallScore = trueUser.players.map(player => {
     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
     
     ScoreCount += found.total_points
@@ -75,10 +75,10 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
   return(
     <>
     <div id="user-display">
-      <h3>{userFinder.userName}</h3>
-      <h3>{userFinder.teamName}</h3>
-      <h3>{userFinder.totalPoints}</h3>
-      <h3>{userFinder.gameWeekPoints}</h3>
+      <h3>{trueUser.userName}</h3>
+      <h3>{trueUser.teamName}</h3>
+      <h3>{trueUser.totalPoints}</h3>
+      <h3>{trueUser.gameWeekPoints}</h3>
     
     </div>
     
@@ -110,7 +110,8 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, userFinder, 
     fetchPlayers = {fetchPlayers}
     users = {users}
     alert = {alert}
-    userFinder = {userFinder}
+    trueUser = {trueUser}
+    findTrueUser = {findTrueUser}
     />
     </>
   )

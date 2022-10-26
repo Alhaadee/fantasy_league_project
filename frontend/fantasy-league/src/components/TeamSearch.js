@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
 
-const TeamSearch = ({data,createPlayer, users,alert, userFinder, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
+const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, backendPlayers,fetchPlayers,setBackEndPlayers}) => {
 
     const [search, setSearch] = useState("");
     const [filteredPlayers, setFilteredPlayers] = useState(data.elements)
@@ -32,18 +32,20 @@ const TeamSearch = ({data,createPlayer, users,alert, userFinder, backendPlayers,
         let copiedplayer = (data.elements.find((player) => player.web_name === e.target.textContent))
         // await setSelectedPlayers(copiedplayer)
         // console.log(copiedplayer.web_name)
-        if (userFinder.players.length === 11) {
+        if (trueUser.players.length === 11) {
             alert("You've already got a full team")
             
         } else if (backendPlayersNames.includes(copiedplayer.web_name)) {
             alert("You already have that player")
         } else{
+            findTrueUser();
             createPlayer({
                 name: copiedplayer.web_name,
                 transferValue: copiedplayer.now_cost/ 10,
                 apiid: copiedplayer.id,
                 position: copiedplayer.element_type
-            }, userFinder)
+            }, trueUser)
+            
         }
 
     
@@ -57,11 +59,11 @@ const TeamSearch = ({data,createPlayer, users,alert, userFinder, backendPlayers,
 
 
 
-    const playerListItems = filteredPlayers.slice(0,10).map((player) =>{
+    const playerListItems = filteredPlayers.slice(0,10).map((player, index) =>{
 
         return (
             // <li>{player.first_name}</li>
-            <li onClick={handleClick}>{player.web_name}</li>
+            <li key={index} onClick={handleClick}>{player.web_name}</li>
         )
     })
 
