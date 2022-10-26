@@ -2,17 +2,17 @@ import axios from "axios";
 
 const API_URL = "http://localhost:8080/auth/";
 
-const signup = (email,password) => {
+const signup = (email,password,teamName, userName) => {
     return axios.post(
-        API_URL + "signup", {
+        "http://localhost:8080/user", {
             email,
             password,
+            teamName,
+            userName
 
         })
         .then ((response) => {
-            if(response.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(response.data))
-            }
+            console.log(response.data);
             return response.data
         });
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 
-const Team = ({users,playersList,removePlayer}) => {
+const Team = ({users,playersList,removePlayer,currentUser}) => {
 
   const userComponents = users.map(user => <h2>{user.userName} {user.teamName}</h2>)
 

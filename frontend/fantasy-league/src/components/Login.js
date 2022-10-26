@@ -13,7 +13,7 @@ const LogIn = () => {
         try {
             await authService.login(email,password).then (
                 () => {
-                    navigate("/team");
+                    navigate("/");
                     window.location.reload();
                 },
 
