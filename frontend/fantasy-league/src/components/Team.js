@@ -15,28 +15,28 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
 
   const keepersComponent = 
     keepersList.map(keeper => (
-      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id}/>
+      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
     ))
 
   const defendersComponent =
     defendersList.map(defender => (
-      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer} key={defender.id}/>
+      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer} key={defender.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
     ))
 
   const midfieldersComponent =
   midfieldersList.map(midfielder => (
-    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer} key={midfielder.id}/>
+    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer} key={midfielder.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
 
   const strikersComponent =
   strikersList.map(striker => (
-    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer} key={striker.id}/>
+    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer} key={striker.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
   
 
   const teamComponents = users.map(user => {
     return user.players.map(player => (
-      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
+      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
   }) 
 
