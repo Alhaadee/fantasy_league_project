@@ -58,9 +58,7 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
 
     return(
         <div>
-            <input type="text" value={search} onChange={handleSearch}/>
             
-        {playerListItems}
 
         { searchedPlayer ? <PlayerInfo  
         searchedPlayer = {searchedPlayer}
@@ -68,6 +66,14 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
         users = {users}
         createPlayer = {createPlayer}
         backendPlayers = {backendPlayers}/> : <></>}
+
+        <br></br>
+
+        <br></br>
+
+        <input type="text" value={search} onChange={handleSearch}/>
+            
+            {playerListItems}
 
         </div>
     )
