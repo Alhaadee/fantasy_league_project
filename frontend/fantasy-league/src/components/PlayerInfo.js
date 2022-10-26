@@ -29,7 +29,7 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
     
 
     return(
-        <div id="country-detail">
+        <div id="player-info">
             <h4>{searchedPlayer.first_name} {searchedPlayer.second_name}</h4>
             <ul>
                 <img src={imgURL}></img>

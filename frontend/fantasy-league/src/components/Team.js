@@ -86,26 +86,26 @@ const Team = ({users,playersList,removePlayer,addPlayerToUser,data, createPlayer
     </div>
     
     <div class = "team-view">
-    <div id="team-display">
-      <h3>Current Team</h3>
-      <div id="keepers">{keepersComponent}</div>
-      <div id="defenders">{defendersComponent}</div>
-      <div id="midfielders">{midfieldersComponent}</div>
-      <div id="strikers">{strikersComponent}</div>
-    </div>
+      <div id="team-display">
+        <h3>Current Team</h3>
+        <div id="keepers">{keepersComponent}</div>
+        <div id="defenders">{defendersComponent}</div>
+        <div id="midfielders">{midfieldersComponent}</div>
+        <div id="strikers">{strikersComponent}</div>
+      </div>
 
-    <div id="right-section">
-    <TeamSearch 
-    data ={data}
-    addPlayerToUser = {addPlayerToUser}
-    createPlayer = {createPlayer}
-    backendPlayers ={backendPlayers}
-    fetchPlayers = {fetchPlayers}
-    users = {users}
-    alert = {alert}
-    teamNames = {teamNames}
-    />
-    </div>
+      <div id="right-section">
+      <TeamSearch 
+      data ={data}
+      addPlayerToUser = {addPlayerToUser}
+      createPlayer = {createPlayer}
+      backendPlayers ={backendPlayers}
+      fetchPlayers = {fetchPlayers}
+      users = {users}
+      alert = {alert}
+      teamNames = {teamNames}
+      />
+      </div>
     </div>
     </section>
   )

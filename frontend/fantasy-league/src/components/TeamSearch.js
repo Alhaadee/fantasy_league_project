@@ -76,7 +76,7 @@ const TeamSearch = ({data,createPlayer, users,alert,addPlayerToUser, backendPlay
 
         <br></br>
 
-        <input type="text" value={search} onChange={handleSearch}/>
+        <input id="player-list" type="text" value={search} onChange={handleSearch}/>
             
             {playerListItems}
 
