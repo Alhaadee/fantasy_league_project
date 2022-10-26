@@ -5,6 +5,13 @@ import authService from "../services/auth.service";
 const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [chosenUser, setChosenUser] = useState({
+        userName:"",
+        teamName:"",
+        email:"",
+        password:""
+    
+    })
 
     const navigate = useNavigate();
 
