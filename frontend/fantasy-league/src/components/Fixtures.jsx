@@ -91,7 +91,6 @@ const displayScoreboard = (fixture) => {
   })
 
   const handlePageClick = ({selected : selectedPage}) => {
-    console.log("selectedPage", selectedPage);
     setSelectedWeek(selectedPage+1)  
 }
 
