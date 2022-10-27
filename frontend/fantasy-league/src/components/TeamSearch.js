@@ -70,7 +70,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
            
 
             // <li onClick={handleClick}>{player.web_name}</li>
-            <li onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
+            <li id="player-search-list" onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
 
         )
     })
@@ -100,7 +100,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
         <br></br>
 
-        <input id="player-list" type="text" value={search} onChange={handleSearch}/>
+        <input id="player-search-bar" type="text" value={search} onChange={handleSearch}/>
             
             {playerListItems}
 

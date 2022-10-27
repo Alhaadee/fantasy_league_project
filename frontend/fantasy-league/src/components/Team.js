@@ -88,7 +88,6 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
     
     <div class = "team-view">
       <div id="team-display">
-        <h3>Current Team</h3>
         <div id="keepers">{keepersComponent}</div>
         <div id="defenders">{defendersComponent}</div>
         <div id="midfielders">{midfieldersComponent}</div>
