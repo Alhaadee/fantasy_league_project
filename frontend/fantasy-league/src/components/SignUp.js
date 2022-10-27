@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import authService from "../services/auth.service";
 import { useNavigate } from "react-router-dom";
+import '../styles/Login.css';
 
 const Signup = ({toggleModal}) => {
     const [email, setEmail] = useState("");
@@ -34,7 +35,7 @@ const Signup = ({toggleModal}) => {
     };
   
     return (
-      <div>
+      <div className="signup-container">
         <form onSubmit={handleSignup}>
           <h3>Sign up</h3>
           <input

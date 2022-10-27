@@ -1,4 +1,4 @@
-nav {
+.navbar-nav {
   display: flex;
   justify-content: space-evenly;
 }
@@ -276,4 +276,9 @@ ul {
   top: 10px;
   right: 10px;
   padding: 5px 7px;
+}
+
+.navbar-nav h3 {
+  font-size: xx-large;
+
 }
