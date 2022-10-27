@@ -1,37 +1,91 @@
-/* .stat_table {
+.stat_tables {
   
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
+    flex-direction: row;
+  }
     
-  table {
+  /* table {
     border: 2px solid forestgreen;
     width: 400px;
     overflow-y:scroll;
     height:170px;
     display:block;
-    /* margin: 10px; */
+    margin: 10px;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+  } */
+
+  .scorers-table {
+    border: 2px solid forestgreen;
+    width: 33%;
+    overflow-y:scroll;
+    overflow-x:scroll;
+    height:470px;
+    display:block;
+    margin: 10px;
+    text-align: center;
+
   }
+
+  .assisters-table {
+    border: 2px solid forestgreen;
+    width: 33%;
+    overflow-y:scroll;
+    overflow-x:scroll;
+    height:470px;
+    display:block;
+    margin: 10px;
+    text-align: center;
+  }
+
+  .saves-table {
+    border: 2px solid forestgreen;
+    width: 33%;
+    overflow-y:scroll;
+    overflow-x:scroll;
+    height:470px;
+    display:block;
+    margin: 10px;
+    text-align: center;
+  }
+
+  
     
   th {
+    background: white;
     border-bottom: 1px solid black;
+    position: sticky;
+    top: 0;
+    width: 33%;
+
   }
     
   td {
     text-align: center;
-    
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 0.3em;
+  }
+
+  table td {
+    border-left: 1px solid #000;
+}
+
+table td:first-child {
+  border-left: none;
+}
+
+  tr {
+    width: 33%;
   }
 
   h3{
     text-align: center;
   }
 
-.stat_table{
+/* .stat_table{
   padding-bottom: 50px;
-}
+} */

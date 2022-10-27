@@ -70,7 +70,8 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
            
 
             // <li onClick={handleClick}>{player.web_name}</li>
-            <li onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
+
+            <li className="search" onClick={() => (setSearchedplayer(player))}>{player.web_name}</li>
 
         )
     })
