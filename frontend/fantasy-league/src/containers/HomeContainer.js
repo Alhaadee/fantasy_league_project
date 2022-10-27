@@ -206,27 +206,10 @@ const HomeContainer = () => {
       <header id="header">
 
         
-        {currentUser ? (
-          <div className="header-logout">
-          <div></div>
-          <img id="logo" src={logo} alt="Logo"></img>
-          <h3 className="logout-btn">
-            <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
-          </h3>
-          </div> 
-        ) :
-        <div className="header-login">
-          <div></div>
-          <img id="logo" src={logo} alt="Logo"></img>
-          <h3>
-              <Link to={"/login"} className="nav-link">Sign in</Link>
-          </h3>
-        </div> 
-        }
+    
+        <img id="logo" src={logo} alt="Logo"></img>
+         
         
-        
-        
-
         <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
@@ -243,6 +226,9 @@ const HomeContainer = () => {
               <h3>
                 <Link to="/leaderBoard">LeaderBoard</Link>
               </h3>
+              <h3 className="logout-btn">
+            <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
+          </h3>
             </div>
           ) : (
             <div className="navbar-nav ms-auto">
@@ -254,6 +240,9 @@ const HomeContainer = () => {
               </h3>
               <h3>
                 <Link to="/leaderBoard">LeaderBoard</Link>
+              </h3>
+              <h3 id="signin">
+              <Link to={"/login"} className="nav-link" >Sign in</Link>
               </h3>
             </div>
           )}

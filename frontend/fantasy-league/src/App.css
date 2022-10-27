@@ -140,6 +140,13 @@ ul {
     border-color: #555;
   }
 
+  #logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+  }
+
 }
 
 #team-display div {
