@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import Pages from './Pages'
+
 
 export default function Fixtures({fixtures, data, teamNames, playerNames, loading}) {
   
@@ -118,7 +118,7 @@ const displayScoreboard = (fixture) => {
         previousLabel = {"<- Previous"}
         nextLabel = {"next ->"}
         pageCount = {38}
-        initialPage = {12}
+        initialPage = {13}
         onPageChange ={handlePageClick}
         containerClassName={"pagination"}
         previousLinkClassName={"pagination__link"}
