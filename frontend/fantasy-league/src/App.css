@@ -24,6 +24,9 @@ h1 {
   background-color: #DDFEE4;
   border-radius: 17px;
   text-align: center;
+  border: solid;
+  border-color: #1A6B69;
+  margin-bottom: 10px;
 
 }
 
@@ -160,7 +163,7 @@ ul {
 
 #right-display {
   border-style: groove;
-  background-color: #29A200;
+  background-color: #DDFEE4;
   border-color: #555;
 }
 
@@ -203,7 +206,7 @@ ul {
 }
 
 #add-button {
-  background-color: #008CBA; 
+  background-color: #1A6B69; 
   border: none;
   color: white;
   padding: 10px 20px;
