@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
 import logo from '../components/logo.png'
+import Footer from "../components/Footer";
 
 const HomeContainer = () => {
   const [fixtures, setFixtures] = useState([]);
@@ -195,6 +196,7 @@ const HomeContainer = () => {
   };
 
   return (
+    <>
     <BrowserRouter>
       <header id="header">
       <img id="logo" src = {logo} alt="Logo" ></img>
@@ -291,7 +293,9 @@ const HomeContainer = () => {
             </div>
           </div>
         </div>)}
+        <Footer/>
     </BrowserRouter>
+    </>
   );
 };
 
