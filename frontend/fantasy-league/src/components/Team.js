@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert, teamNames}) => {
-
+const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, 
+  createPlayer,backendPlayers,fetchPlayers,alert, teamNames, userGWScore, userOverallScore}) => {
 
 
   let keepersList = trueUser.players.filter(player => player.position === 1)
@@ -78,16 +78,19 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
     <section class = "team-section">
     <div id="user-display">
       <h3>{trueUser.userName}</h3>
-      <h3>{trueUser.teamName}</h3>
       <h3> Transfer budget: </h3>
       {100 - transCount}
-      <h3>Total Points: {trueUser.totalPoints}</h3>
-      <h3>Points this game week: {trueUser.gameWeekPoints}</h3>
+      <h3>Total Points: {userGWScore(trueUser)}</h3>
+      <h3>Points this game week: {userOverallScore(trueUser)}</h3>
     
     </div>
+
+
+  
     
     <div class = "team-view">
       <div id="team-display">
+        <h3>{trueUser.teamName}</h3>
         <div id="keepers">{keepersComponent}</div>
         <div id="defenders">{defendersComponent}</div>
         <div id="midfielders">{midfieldersComponent}</div>

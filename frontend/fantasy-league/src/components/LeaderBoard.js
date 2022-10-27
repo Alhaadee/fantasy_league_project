@@ -1,37 +1,37 @@
 import React from 'react'
 
-export default function LeaderBoard({users,data}) {
+export default function LeaderBoard({users,data, userGWScore, userOverallScore}) {
 
 
 
 
 
-  const userGWScore = (user)=> { 
-    let scoreTotal = 0
-    user.players.map(player => {
-      let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-      console.log(found.total_points)
-      scoreTotal += found.event_points
+  // const userGWScore = (user)=> { 
+  //   let scoreTotal = 0
+  //   user.players.map(player => {
+  //     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+  //     console.log(found.total_points)
+  //     scoreTotal += found.event_points
       
-    }
-    )
-    return scoreTotal;
-  }
+  //   }
+  //   )
+  //   return scoreTotal;
+  // }
 
   
 
   
-  const userOverallScore = (user)=> { 
-    let scoreTotal = 0
-    user.players.map(player => {
-      let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-      console.log(found.total_points)
-      scoreTotal += found.total_points
+  // const userOverallScore = (user)=> { 
+  //   let scoreTotal = 0
+  //   user.players.map(player => {
+  //     let found = data.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+  //     console.log(found.total_points)
+  //     scoreTotal += found.total_points
       
-    }
-    )
-    return scoreTotal;
-  }
+  //   }
+  //   )
+  //   return scoreTotal;
+  // }
 
 
   const leader = users.map((user,key) => {
