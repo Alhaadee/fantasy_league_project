@@ -1,0 +1,35 @@
+
+.fixture_card {
+    background-color: pink;
+    border-radius: 17px;
+    text-align: center;
+    
+  }
+  nav a {
+    text-decoration: none;
+  }
+  h3 {
+    padding: 15px 0 0 0;
+  }
+  
+  .fixture_card p {
+    margin: 0px;
+    padding-bottom: 5px;
+  }
+  
+  .fixtures_list {
+    display: table;
+    margin: 0px auto;
+  }
+  
+  .players-scored {
+    display: flex;
+  }
+  
+  .left {
+    min-width: 135px;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
