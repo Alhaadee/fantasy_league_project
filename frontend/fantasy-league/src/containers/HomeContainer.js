@@ -10,7 +10,7 @@ import Signup from "../components/SignUp";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAlert } from 'react-alert'
-import logo from '../components/logo2.png'
+import logo from '../components/logo.png'
 import Footer from "../components/Footer";
 import "../styles/Home.css"
 

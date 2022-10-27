@@ -38,6 +38,7 @@ h3 {
 .fixtures_list {
   display: table;
   margin: 0px auto;
+  margin-bottom: 50px;
 }
 
 .players-scored {
@@ -120,7 +121,7 @@ ul {
   margin: 3px;
   align-items: center;
   text-align: center;
-
+  margin-bottom: 10px;
 }
 
 @media screen {
