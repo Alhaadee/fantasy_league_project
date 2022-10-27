@@ -52,6 +52,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser,
   let transCount = 0;
   const transferbudget = trueUser.players.map(player => {
     transCount += player.transferValue/10 
+    
     // console.log(transCount);
   })
 
@@ -77,8 +78,9 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser,
   return(
     <section class = "team-section">
     <div id="user-display">
-      <h3>{trueUser.userName}'s Team</h3>
-      <h3> Transfer budget: {100 - transCount}</h3>
+      <h3>{trueUser.userName}</h3>
+      <h3> Transfer budget: </h3>
+      {(100 -transCount).toFixed(1)}
       <h3>Total Points: {userGWScore(trueUser)}</h3>
       <h3>Gameweek Points: {userOverallScore(trueUser)}</h3>
     
@@ -108,6 +110,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser,
       teamNames = {teamNames}
       trueUser = {trueUser}
       findTrueUser = {findTrueUser}
+      transCount={transCount}
       />
       </div>
     </div>

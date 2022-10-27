@@ -55,7 +55,7 @@ public class UserService {
         List<Player> playerList =  targetUser.getPlayers();
         playerList.remove(targetPlayer);
         targetUser.setPlayers(playerList);
-        updateTransferBudget(userId);
+        addToTransferBudget(userId,targetPlayer);
         userRepository.save(targetUser);
     }
     
@@ -68,10 +68,19 @@ public class UserService {
         float spentBudget = 0;
         User targetUser = userRepository.findById(userId).get();
         for (Player player:targetUser.getPlayers()){
-            spentBudget += player.getTransferValue();
+            spentBudget += player.getTransferValue()/10;
         }
         float currentBudget = targetUser.getTransferBudget();
         targetUser.setTransferBudget(currentBudget-spentBudget);
+    }
+
+    public void addToTransferBudget(Long userId, Player targetPlayer){
+        float spentBudget = 0;
+        User targetUser = userRepository.findById(userId).get();
+        Player removedPlayer = playerRepository.findById(targetPlayer.getId()).get();
+
+        float currentBudget = targetUser.getTransferBudget();
+        targetUser.setTransferBudget(currentBudget + removedPlayer.getTransferValue()/10);
     }
 
 }
