@@ -168,6 +168,30 @@ const HomeContainer = () => {
         
     }
 
+    const userGWScore = (user)=> { 
+        let scoreTotal = 0
+        user.players.map(player => {
+          let found = footballData.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+          console.log(found.total_points)
+          scoreTotal += found.event_points
+          
+        }
+        )
+        return scoreTotal;
+      }
+
+      const userOverallScore = (user)=> { 
+        let scoreTotal = 0
+        user.players.map(player => {
+          let found = footballData.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
+          console.log(found.total_points)
+          scoreTotal += found.total_points
+          
+        }
+        )
+        return scoreTotal;
+      }
+
     
 
 
@@ -268,11 +292,16 @@ const HomeContainer = () => {
                     trueUser = {trueUser}
                     findTrueUser = {findTrueUser}
                     teamNames = {teamNames}
+                    userGWScore = {userGWScore}
+                    userOverallScore = {userOverallScore}
                     />
                     }/>
                     <Route path="/leaderboard" element= {
                     <LeaderBoard users ={users}
                     data ={footballData}
+                    userGWScore = {userGWScore}
+                    userOverallScore = {userOverallScore}
+                    
                     />
                     }/>
                      <Route path="/stats" element= {
