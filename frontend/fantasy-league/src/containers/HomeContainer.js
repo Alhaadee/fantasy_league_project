@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useAlert } from "react-alert";
 import logo from "../components/logo.png";
+import "../styles/Home.css"
 
 const HomeContainer = () => {
   const [fixtures, setFixtures] = useState([]);
@@ -204,6 +205,7 @@ const HomeContainer = () => {
         
         {currentUser ? (
           <div className="header-logout">
+          <div></div>
           <img id="logo" src={logo} alt="Logo"></img>
           <h3 className="logout-btn">
             <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
@@ -211,6 +213,7 @@ const HomeContainer = () => {
           </div> 
         ) :
         <div className="header-login">
+          <div></div>
           <img id="logo" src={logo} alt="Logo"></img>
           <h3>
               <Link to={"/login"} className="nav-link">Sign in</Link>

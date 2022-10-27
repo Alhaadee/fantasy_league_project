@@ -1,0 +1,12 @@
+.leaderboard {
+    border: 2px solid forestgreen;
+    width: 400px;
+    overflow-y:scroll;
+    overflow-x:scroll;
+    height:170px;
+    display:block;
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
