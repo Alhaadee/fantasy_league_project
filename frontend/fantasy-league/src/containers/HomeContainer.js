@@ -200,15 +200,31 @@ const HomeContainer = () => {
   return (
     <BrowserRouter>
       <header id="header">
+
         
-        <img id="logo" src={logo} alt="Logo"></img>
+        {currentUser ? (
+          <div className="header-logout">
+          <img id="logo" src={logo} alt="Logo"></img>
+          <h3 className="logout-btn">
+            <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
+          </h3>
+          </div> 
+        ) :
+        <div className="header-login">
+          <img id="logo" src={logo} alt="Logo"></img>
+          <h3>
+              <Link to={"/login"} className="nav-link">Sign in</Link>
+          </h3>
+        </div> 
+        }
+        
+        
+        
 
         <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
-              <h3>
-                <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
-              </h3>
+              
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
@@ -224,25 +240,9 @@ const HomeContainer = () => {
             </div>
           ) : (
             <div className="navbar-nav ms-auto">
-              <div className="login-buttons">
-                <h3>
-                  <Link to={"/login"} className="nav-link">
-                    Login
-                  </Link>
-                </h3>
-                <h3>
-                  <Link to={"/signup"} className="nav-link">
-                    Sign up
-                  </Link>
-                </h3>
-              </div>
-
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
-              {/* <h3>
-                <Link to="/team">Team</Link>
-              </h3> */}
               <h3>
                 <Link to="/stats">Stats</Link>
               </h3>

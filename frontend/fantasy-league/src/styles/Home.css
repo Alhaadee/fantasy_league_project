@@ -1,0 +1,21 @@
+.nav-link {
+    text-decoration: none;
+}
+
+.header-logout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.header-login {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logout-btn h3  {
+    margin: 0px;
+    padding: 0px
+}
