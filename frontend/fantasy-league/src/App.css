@@ -134,7 +134,7 @@ ul {
     background-repeat: no-repeat;
     /* min-height: 500px; */
     text-align: center;
-    box-shadow: 0 0 8px 8px #555;
+    padding-bottom: 50px;
 
   }
 
@@ -148,6 +148,7 @@ ul {
 #right-display {
   border-style: groove;
   background-color: #29A200;
+  border-color: #555;
 }
 
 #player-search-bar{
