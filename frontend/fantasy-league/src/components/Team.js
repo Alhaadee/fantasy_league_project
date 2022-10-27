@@ -78,7 +78,6 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser,
     <section class = "team-section">
     <div id="user-display">
       <h3>{trueUser.userName}</h3>
-      <h3>{trueUser.teamName}</h3>
       <h3> Transfer budget: </h3>
       {100 - transCount}
       <h3>Total Points: {userGWScore(trueUser)}</h3>

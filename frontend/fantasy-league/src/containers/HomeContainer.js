@@ -226,11 +226,11 @@ const HomeContainer = () => {
         <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <a href="/login" className="nav-link" onClick={logOut}>
+              <h3>
+              <a href="/login" className="nav-link" onClick={logOut}>
                   Logout
-                </a>
-              </li>
+              </a>
+              </h3>
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
@@ -247,17 +247,19 @@ const HomeContainer = () => {
             
           ) : (
             <div className="navbar-nav ms-auto">
-              <li className="nav-item">
-                <Link to={"/login"} className="nav-link">
+              <div className="login-buttons">
+              <h3>
+              <Link to={"/login"} className="nav-link">
                   Login
                 </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to={"/signup"} className="nav-link">
+              </h3>
+              <h3>
+              <Link to={"/signup"} className="nav-link">
                   Sign up
                 </Link>
-              </li>
+              </h3>
+              </div>
+              
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
