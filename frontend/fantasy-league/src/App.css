@@ -298,3 +298,8 @@ ul {
   font-size: xx-large;
 
 }
+
+li {
+  list-style: none;
+  padding-left: 1rem;
+}

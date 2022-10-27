@@ -38,6 +38,7 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
             <h4>{searchedPlayer.first_name} {searchedPlayer.second_name}</h4>
             
                 <img src={imgURL}></img>
+                <br></br>
                 Team: {teamNames[searchedPlayer.team]} <br></br>
                 Cost: {searchedPlayer.now_cost/10} <br></br>
                 Current form: {searchedPlayer.form} <br></br>

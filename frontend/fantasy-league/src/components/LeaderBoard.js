@@ -1,4 +1,5 @@
 import React from 'react'
+import "./LeaderBoard.css"
 
 export default function LeaderBoard({users,data, userGWScore, userOverallScore}) {
 
@@ -49,8 +50,9 @@ export default function LeaderBoard({users,data, userGWScore, userOverallScore})
   })
   
     return (
-      <div>
+      <div className='leaderboard'>
         <h3>Current League Standings</h3>
+        <br></br>
       <table>
       <tr>
         <th>Name</th>
