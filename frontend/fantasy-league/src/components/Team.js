@@ -80,7 +80,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser,
     <div id="user-display">
       <h3>{trueUser.userName}</h3>
       <h3> Transfer budget: </h3>
-      {(100 -transCount).toFixed(2)}
+      {(100 -transCount).toFixed(1)}
       <h3>Total Points: {userGWScore(trueUser)}</h3>
       <h3>Points this game week: {userOverallScore(trueUser)}</h3>
     
