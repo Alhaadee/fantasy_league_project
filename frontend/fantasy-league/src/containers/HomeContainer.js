@@ -153,6 +153,9 @@ const HomeContainer = () => {
   };
 
   const userGWScore = (user) => {
+    if(user.gwscore > 30){
+      return user.gwscore
+    } else {
     let scoreTotal = 0;
     user.players.map((player) => {
       let found = footballData.elements.find(
@@ -162,9 +165,14 @@ const HomeContainer = () => {
       scoreTotal += found.event_points;
     });
     return scoreTotal;
+  }
   };
 
   const userOverallScore = (user) => {
+    if(user.overallScore > 290){
+      return user.overallScore
+    } else {
+
     let scoreTotal = 0;
     user.players.map((player) => {
       let found = footballData.elements.find(
@@ -174,6 +182,8 @@ const HomeContainer = () => {
       scoreTotal += found.total_points;
     });
     return scoreTotal;
+
+  }
   };
 
   const teamNames = {
