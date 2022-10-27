@@ -104,7 +104,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
         <br></br>
 
-        <input id="player-search-bar" type="text" value={search} onChange={handleSearch}/>
+        <input placeholder="Find a player.." id="player-search-bar" type="text" value={search} onChange={handleSearch}/>
             
             {playerListItems}
 
