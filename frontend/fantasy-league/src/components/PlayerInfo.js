@@ -45,7 +45,7 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
                 Clean Sheets: {searchedPlayer.clean_sheets} <br></br>
 
             
-            <button onClick={handleClick}>Add to team!</button>
+            <button id="add-button" onClick={handleClick}>Add to team!</button>
         </div>
     )
 }

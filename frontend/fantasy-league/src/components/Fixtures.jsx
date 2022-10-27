@@ -62,15 +62,15 @@ const displayScoreboard = (fixture) => {
     )
   }
 }
-
-
+  // const teamHLogo = `https://resources.premierleague.com/premierleague/badges/70/t${fixture.team_h}.png`
+  // const teamALogo = `https://resources.premierleague.com/premierleague/badges/70/t${fixture.team_a}.png`
  
   
   const fixturesList = fixtures.map((fixture)=>{
     if (fixture.event === selectedWeek){
       return(
         <div key={fixture.id} className='fixture_card'>
-          <h3 >{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
+          <h3 ><img></img>{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
           {displayScoreboard(fixture)}
           <div className='players-scored'>
             <ul className='left'>
