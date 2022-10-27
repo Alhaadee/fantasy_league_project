@@ -62,15 +62,28 @@ const displayScoreboard = (fixture) => {
     )
   }
 }
-  // const teamHLogo = `https://resources.premierleague.com/premierleague/badges/70/t${fixture.team_h}.png`
-  // const teamALogo = `https://resources.premierleague.com/premierleague/badges/70/t${fixture.team_a}.png`
- 
+  const teamLogo = "https://resources.premierleague.com/premierleague/badges/70/t"
+  // ${fixture.team_h}
+  // .png
+  // <img src={teamLogo + fixture.team_h + ".png"}></img>
+  
+  const getHomeTeamURL = (fixture) => {
+    let targetTeam = data.teams.find(team => team.id === fixture.team_h)
+    let teamLogo = "https://resources.premierleague.com/premierleague/badges/70/t" + targetTeam.code + ".png"
+    return teamLogo
+  }
+
+  const getAwayTeamURL = (fixture) => {
+    let targetTeam = data.teams.find(team => team.id === fixture.team_a)
+    let teamLogo = "https://resources.premierleague.com/premierleague/badges/70/t" + targetTeam.code + ".png"
+    return teamLogo
+  }
   
   const fixturesList = fixtures.map((fixture)=>{
     if (fixture.event === selectedWeek){
       return(
         <div key={fixture.id} className='fixture_card'>
-          <h3 ><img></img>{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]}</h3>
+          <h3 ><img src={getHomeTeamURL(fixture)}></img>{teamNames[fixture.team_h]} Vs {teamNames[fixture.team_a]} <img src={getAwayTeamURL(fixture)}></img></h3>
           {displayScoreboard(fixture)}
           <div className='players-scored'>
             <ul className='left'>
