@@ -100,18 +100,20 @@ ul {
 
 .team-view {
   display: flex;
+  justify-content: space-evenly;
 }
 
 .team-section{
   align-items: center;
   align-content: center;
-  padding: 5px;
-  margin: 5px;
+
+  background-color: #555;
 
 }
 
 .team-view #right-section {
-  min-width: 20%
+  max-width: 20%
+
 }
 
 .team-view #team-display {
@@ -133,6 +135,8 @@ ul {
     background-repeat: no-repeat;
     /* min-height: 500px; */
     text-align: center;
+    padding-bottom: 50px;
+
   }
 
 }
@@ -144,7 +148,10 @@ ul {
 
 #right-display {
   border-style: groove;
+  background-color: #29A200;
+  border-color: #555;
 }
+
 #player-search-bar{
   align-items: center;
   max-width: 85%;
@@ -176,7 +183,7 @@ ul {
 }
 
 #add-button {
-  background-color: #4CAF50; /* Green */
+  background-color: #008CBA; /* Green */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -197,7 +204,7 @@ ul {
   border: 2px solid #555;
   border-radius: 4px;
   transition: 0.4s ease-in-out;
-
+  
 }
 
 #keepers {
@@ -227,6 +234,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-bottom: 10px;
 }
 
 #player-card {
