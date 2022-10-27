@@ -111,11 +111,11 @@ ul {
 }
 
 .team-view #right-section {
-  max-width: 20%
+  min-width: 20%
 }
 
 .team-view #team-display {
-  min-width: 65%;
+  min-width: 80%;
   padding: 3px;
   margin: 3px;
   align-items: center;
@@ -147,12 +147,16 @@ ul {
 }
 #player-search-bar{
   align-items: center;
-  max-width: 180px;
-  max-height: 20px;
+  max-width: 85%;
+  max-height: 4%;
 }
 
 #player-info{
   text-align: center;
+}
+
+#player-info img{
+  width: 100%;
 }
 
 #header {
@@ -179,7 +183,9 @@ ul {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 100%;
+  width: 70%;
+  min-height: 10%;
 }
 
 #user-display {
