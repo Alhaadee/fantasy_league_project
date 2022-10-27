@@ -117,8 +117,9 @@ const HomeContainer = () => {
     newUser.players = newUser.players.filter(
       (player) => player.id !== removedPlayer.id
     );
+    newUser.transferBudget += removedPlayer.transferValue/10;
+    console.log(removePlayer.transfer);
     setTrueUser(newUser);
-    console.log(newUser);
   };
 
   const notify = () => toast("Full Team!");

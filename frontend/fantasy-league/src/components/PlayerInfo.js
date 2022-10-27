@@ -1,8 +1,9 @@
 
 
-const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, teamNames, findTrueUser, trueUser}) => {
+const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, teamNames, findTrueUser, trueUser, transCount}) => {
 
     const trueUserNames = trueUser.players.map(player => player.name)
+    const trueUserBudget = trueUser.transferBudget
 
     const handleClick =  (e) => {
         // console.log(e.target.textContent);
@@ -15,7 +16,10 @@ const PlayerInfo = ({searchedPlayer, data, users, backendPlayers,createPlayer, t
             
         } else if (trueUserNames.includes(copiedplayer.web_name)) {
             alert("You already have that player")
-        } else{
+        } else if (100 - transCount < copiedplayer.now_cost/10){
+            alert("You don't have enough money!")
+        }
+        else{
             findTrueUser();
             createPlayer({
                 name: copiedplayer.web_name,

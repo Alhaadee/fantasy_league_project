@@ -31,11 +31,11 @@ public class DataLoader implements ApplicationRunner {
 
         userRepository.save(user1);
 
-        Player player1 = new Player("Haaland",4,12.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",318);
-        Player player2 = new Player("James",2,6.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",146);
-        Player player3 = new Player("Ederson",1,6.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p121160.png",307);
-        Player player4 = new Player("De Bruyne",3,10.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p61366.png",301);
-        Player player5 = new Player("Kante",3,5.00F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p116594.png",134);
+        Player player1 = new Player("Haaland",4,122.0F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png",318);
+        Player player2 = new Player("James",2,59.0F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p225796.png",146);
+        Player player3 = new Player("Ederson",1,54.0F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p121160.png",307);
+        Player player4 = new Player("De Bruyne",3,123.0F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p61366.png",301);
+        Player player5 = new Player("Kante",3,48.0F,"https://resources.premierleague.com/premierleague/photos/players/110x140/p116594.png",134);
 
         playerRepository.save(player1);
         playerRepository.save(player2);
