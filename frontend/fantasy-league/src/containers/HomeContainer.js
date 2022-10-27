@@ -7,10 +7,11 @@ import Team from "../components/Team";
 import authService from "../services/auth.service";
 import Login from "../components/Login";
 import Signup from "../components/SignUp";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useAlert } from "react-alert";
-import logo from "../components/logo.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useAlert } from 'react-alert'
+import logo from '../components/logo.png'
+import Footer from "../components/Footer";
 import "../styles/Home.css"
 
 const HomeContainer = () => {
@@ -200,6 +201,7 @@ const HomeContainer = () => {
 
 
   return (
+    <>
     <BrowserRouter>
       <header id="header">
 
@@ -318,9 +320,11 @@ const HomeContainer = () => {
               </button>
             </div>
           </div>
-        </div>
-      )}
+
+        </div>)}
+        <Footer/>
     </BrowserRouter>
+    </>
   );
 };
 
