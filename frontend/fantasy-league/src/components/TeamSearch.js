@@ -79,7 +79,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
 
     return(
-        <div>
+        <div id="right-display">
             
 
         <br></br>

@@ -35,7 +35,7 @@ const PlayerCard = ({userplayer,playersList,removePlayer,users,checkIfEmpty,true
     return (
         <>
         <div id="player-card">
-            <img src={imgURL} height="150px"></img>
+            <img src={imgURL} height="125px"></img>
             <h3>{APIplayer.web_name}             <input
                 type="button"
                 value="ℹ"

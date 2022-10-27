@@ -68,15 +68,19 @@ const displayScoreboard = (fixture) => {
   // <img src={teamLogo + fixture.team_h + ".png"}></img>
   
   const getHomeTeamURL = (fixture) => {
+    if(!loading){
     let targetTeam = data.teams.find(team => team.id === fixture.team_h)
     let teamLogo = "https://resources.premierleague.com/premierleague/badges/70/t" + targetTeam.code + ".png"
     return teamLogo
+    }
   }
 
   const getAwayTeamURL = (fixture) => {
+    if(!loading){
     let targetTeam = data.teams.find(team => team.id === fixture.team_a)
     let teamLogo = "https://resources.premierleague.com/premierleague/badges/70/t" + targetTeam.code + ".png"
     return teamLogo
+    }
   }
   
   const fixturesList = fixtures.map((fixture)=>{
