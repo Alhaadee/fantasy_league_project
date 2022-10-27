@@ -63,7 +63,7 @@ const TeamSearch = ({data,createPlayer, users,alert, trueUser,findTrueUser, back
 
 
 
-    const playerListItems = filteredPlayers.slice(0,10).map((player, index) =>{
+    const playerListItems = filteredPlayers.slice(0,15).map((player, index) =>{
 
         return (
             // <li>{player.first_name}</li>
