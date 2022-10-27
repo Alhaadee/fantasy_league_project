@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import PlayerCard from "./PlayerCard"
 import TeamSearch from "./TeamSearch"
 
-const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert}) => {
+const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, createPlayer,backendPlayers,fetchPlayers,alert, teamNames}) => {
 
 
 
@@ -15,28 +15,28 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
 
   const keepersComponent = 
     keepersList.map(keeper => (
-      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id}/>
+      <PlayerCard userplayer={keeper} playersList={playersList} removePlayer={removePlayer} key={keeper.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
     ))
 
   const defendersComponent =
     defendersList.map(defender => (
-      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer} key={defender.id}/>
+      <PlayerCard userplayer={defender} playersList={playersList} removePlayer={removePlayer} key={defender.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
     ))
 
   const midfieldersComponent =
   midfieldersList.map(midfielder => (
-    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer} key={midfielder.id}/>
+    <PlayerCard userplayer={midfielder} playersList={playersList} removePlayer={removePlayer} key={midfielder.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
 
   const strikersComponent =
   strikersList.map(striker => (
-    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer} key={striker.id}/>
+    <PlayerCard userplayer={striker} playersList={playersList} removePlayer={removePlayer} key={striker.id} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
   
 
   const teamComponents = users.map(user => {
     return user.players.map(player => (
-      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users}/>
+      <PlayerCard userplayer={player} playersList={playersList} removePlayer={removePlayer} users={users} trueUser={trueUser} findTrueUser={findTrueUser}/>
   ))
   }) 
 
@@ -51,7 +51,7 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
 
   let transCount = 0;
   const transferbudget = trueUser.players.map(player => {
-    transCount += player.transferValue 
+    transCount += player.transferValue/10 
     // console.log(transCount);
   })
 
@@ -75,47 +75,42 @@ const Team = ({users,playersList,removePlayer,findTrueUser ,data ,trueUser, crea
   // const transferbudget2 = 
 
   return(
-    <>
+    <section class = "team-section">
     <div id="user-display">
       <h3>{trueUser.userName}</h3>
       <h3>{trueUser.teamName}</h3>
-      <h3>{trueUser.totalPoints}</h3>
-      <h3>{trueUser.gameWeekPoints}</h3>
-    
-    </div>
-    
-
-    <div id="team-display">
-      <div id="keepers">{keepersComponent}</div>
-      <div id="defenders">{defendersComponent}</div>
-      <div id="midfielders">{midfieldersComponent}</div>
-      <div id="strikers">{strikersComponent}</div>
-    </div>
-
-    <div>
       <h3> Transfer budget: </h3>
       {100 - transCount}
-
-      <h3> Points this game week: </h3>
-      {gwScoreCount}
-
-      <h3> Total Points: </h3>
-      {ScoreCount}
-
-    </div>
-
-    <TeamSearch 
-    data ={data}
+      <h3>Total Points: {trueUser.totalPoints}</h3>
+      <h3>Points this game week: {trueUser.gameWeekPoints}</h3>
     
-    createPlayer = {createPlayer}
-    backendPlayers ={backendPlayers}
-    fetchPlayers = {fetchPlayers}
-    users = {users}
-    alert = {alert}
-    trueUser = {trueUser}
-    findTrueUser = {findTrueUser}
-    />
-    </>
+    </div>
+    
+    <div class = "team-view">
+      <div id="team-display">
+        <h3>Current Team</h3>
+        <div id="keepers">{keepersComponent}</div>
+        <div id="defenders">{defendersComponent}</div>
+        <div id="midfielders">{midfieldersComponent}</div>
+        <div id="strikers">{strikersComponent}</div>
+      </div>
+
+      <div id="right-section">
+      <TeamSearch 
+      data ={data}
+      
+      createPlayer = {createPlayer}
+      backendPlayers ={backendPlayers}
+      fetchPlayers = {fetchPlayers}
+      users = {users}
+      alert = {alert}
+      teamNames = {teamNames}
+      trueUser = {trueUser}
+      findTrueUser = {findTrueUser}
+      />
+      </div>
+    </div>
+    </section>
   )
 
 

@@ -108,7 +108,6 @@ const HomeContainer = () => {
     }
   }, [loading]);
 
- console.log(trueUser)
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -122,15 +121,21 @@ const HomeContainer = () => {
     }
   };
 
-  const removePlayer = async (trueUser, playerId) => {
+  const removePlayer = async (trueUser, removedPlayer) => {
     await fetch(
-      `http://localhost:8080/user/removePlayer?userId=${trueUser.userId}&playerId=${playerId}`,
+      `http://localhost:8080/user/removePlayer?userId=${trueUser.userId}&playerId=${removedPlayer.id}`,
       {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
       }
     );
-    fetchUsers();
+    await fetchUsers();
+
+    const newUser = {...trueUser}
+    newUser.players = newUser.players.filter(player=>player.id !== removedPlayer.id)
+    setTrueUser(newUser)
+    console.log(newUser);
+
   };
 
 
@@ -143,7 +148,7 @@ const HomeContainer = () => {
             body: JSON.stringify(player)
         })
 
-        console.log(trueUser);
+       
 
         const savedPlayer = await response.json()
         await fetch(`http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`, {
@@ -151,7 +156,6 @@ const HomeContainer = () => {
             headers: {'Content-Type': 'application/json'}
         })
         await fetchUsers()
-        console.log(users);
         // console.log(savedPlayer);
         const newUser = trueUser
         const newPlayer = player
@@ -192,11 +196,10 @@ const HomeContainer = () => {
 
   return (
     <BrowserRouter>
-      <header>
+      <header id="header">
       <img id="logo" src = {logo} alt="Logo" ></img>
-        <h1>Bright Fantasy League</h1>
 
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
               <li className="nav-item">
@@ -264,6 +267,7 @@ const HomeContainer = () => {
                     alert = {alert}
                     trueUser = {trueUser}
                     findTrueUser = {findTrueUser}
+                    teamNames = {teamNames}
                     />
                     }/>
                     <Route path="/leaderboard" element= {

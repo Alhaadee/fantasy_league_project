@@ -13,8 +13,10 @@
     overflow-y:scroll;
     height:170px;
     display:block;
-    margin: 10px;
-
+    /* margin: 10px; */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
   }
     
   th {
@@ -25,3 +27,11 @@
     text-align: center;
     
   }
+
+  h3{
+    text-align: center;
+  }
+
+.stat_table{
+  padding-bottom: 50px;
+}
