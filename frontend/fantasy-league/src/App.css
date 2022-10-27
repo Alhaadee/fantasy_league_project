@@ -16,8 +16,8 @@ h1 {
 }
 
 .fixture_card {
-  background-color: beige;
-  border-radius: 5px;
+  background-color: lightgray;
+  border-radius: 17px;
   text-align: center;
 
 }
@@ -27,7 +27,7 @@ nav a {
 }
 
 h3 {
-  padding: 5px 0 0 0;
+  padding: 15px;
 }
 
 .fixture_card p {
@@ -116,25 +116,23 @@ ul {
   #team-display {
     background-color: #29A200;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Football_field.svg/1200px-Football_field.svg.png");
-    background-size: 1024px;
+    background-size: 700px;
     /* 1024px */
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 1300px;
+    min-height: 700px;
     text-align: center;
 
   }
 
-  #logo {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: 30%;
-  }
 }
 
 #team-display div {
-  min-height: 350px;
+  min-height: 150px;
+}
+
+#player-info {
+  text-align: center;
 }
 
 #header {
@@ -153,9 +151,27 @@ ul {
 
 }
 
+#add-button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 #user-display {
   text-align: center;
   align-content: center;
+}
+
+#player-search-bar{
+  border: 2px solid #555;
+  border-radius: 4px;
+  transition: 0.4s ease-in-out;
+
 }
 
 #keepers {

@@ -7,10 +7,11 @@ import Team from "../components/Team";
 import authService from "../services/auth.service";
 import Login from "../components/Login";
 import Signup from "../components/SignUp";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useAlert } from 'react-alert'
-import logo from '../components/logo.png'
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useAlert } from "react-alert";
+import logo from "../components/logo.png";
+import "../styles/Home.css"
 
 const HomeContainer = () => {
   const [fixtures, setFixtures] = useState([]);
@@ -20,26 +21,24 @@ const HomeContainer = () => {
   const [loading, setLoading] = useState(true);
   const [playerNames, setPlayerNames] = useState({});
   const [currentUser, setCurrentUser] = useState(null);
-  const [backendPlayers, setBackEndPlayers] = useState([])
-  const [trueUser, setTrueUser] = useState({})
+  const [backendPlayers, setBackEndPlayers] = useState([]);
+  const [trueUser, setTrueUser] = useState({});
 
-  const findTrueUser = () =>{
-    if(currentUser){
-    for( let i = 0; i < users.length; i++){
-      if (users[i].email === currentUser.email){
-        setTrueUser(users[i])
+  const findTrueUser = () => {
+    if (currentUser) {
+      for (let i = 0; i < users.length; i++) {
+        if (users[i].email === currentUser.email) {
+          setTrueUser(users[i]);
+        }
       }
     }
-  }
-  }
-
+  };
 
   useEffect(() => {
     const user = authService.getCurrentUser();
 
     if (user) {
       setCurrentUser(user);
-      
     }
   }, []);
 
@@ -47,31 +46,17 @@ const HomeContainer = () => {
     authService.logout();
   };
 
-    const fetchPlayers = async() => {
-        const response = await fetch(`http://localhost:8080/players`)
-        const databasePlayers = await response.json()
-        setBackEndPlayers(databasePlayers)
-    }
+  const fetchPlayers = async () => {
+    const response = await fetch(`http://localhost:8080/players`);
+    const databasePlayers = await response.json();
+    setBackEndPlayers(databasePlayers);
+  };
 
   const [modal, setModal] = useState(false);
 
-    const toggleModal = () => {
-      setModal(!modal)
-    }
-
-    // const addPlayer = (player) => {
-    //     setUsers([...users[0].players, player])
-    //     // if(users.players >= 5) {
-    //     //     alert("You've already added 5 players!");
-    //     // } else {
-    //     //     setUsers([...users.players, player])
-    //     // }
-    // }
-
-  //   useEffect(()=>{
-  //     const foundUser = users.find(user => user.email === currentUser.email);
-  //     setCurrentUser(foundUser)
-  //   },[currentUser])
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   const fetchFixtures = async () => {
     const response = await fetch("http://localhost:8080/data/fixtures");
@@ -84,9 +69,8 @@ const HomeContainer = () => {
     const footballStats = await response.json();
     setFootballData(footballStats);
     setLoading(false);
-        fetchPlayers()
+    fetchPlayers();
   };
-
 
   const fetchUsers = async () => {
     const response = await fetch("http://localhost:8080/user");
@@ -104,10 +88,8 @@ const HomeContainer = () => {
     if (!loading) {
       createPlayersObj();
       findTrueUser();
-      
     }
   }, [loading]);
-
 
   const createPlayersObj = () => {
     if (!loading) {
@@ -131,69 +113,66 @@ const HomeContainer = () => {
     );
     await fetchUsers();
 
-    const newUser = {...trueUser}
-    newUser.players = newUser.players.filter(player=>player.id !== removedPlayer.id)
-    setTrueUser(newUser)
+    const newUser = { ...trueUser };
+    newUser.players = newUser.players.filter(
+      (player) => player.id !== removedPlayer.id
+    );
+    setTrueUser(newUser);
     console.log(newUser);
-
   };
 
+  const notify = () => toast("Full Team!");
 
-    const notify = () => toast("Full Team!");
+  const createPlayer = async (player, trueUser) => {
+    const response = await fetch(`http://localhost:8080/players`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(player),
+    });
 
-    const createPlayer = async (player, trueUser) => {
-        const response = await fetch(`http://localhost:8080/players`, {
-            method: "POST",
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(player)
-        })
-
-       
-
-        const savedPlayer = await response.json()
-        await fetch(`http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`, {
-            method: "PUT",
-            headers: {'Content-Type': 'application/json'}
-        })
-        await fetchUsers()
-        // console.log(savedPlayer);
-        const newUser = trueUser
-        const newPlayer = player
-        newPlayer.id=newUser.players.length + 1
-        newUser.players.push(player)
-        setTrueUser(newUser)
-        // console.log(backendPlayers);
-        // setBackEndPlayers(newPlayers)
-        // console.log(backendPlayers);
-        
-    }
-
-    const userGWScore = (user)=> { 
-        let scoreTotal = 0
-        user.players.map(player => {
-          let found = footballData.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-          console.log(found.total_points)
-          scoreTotal += found.event_points
-          
-        }
-        )
-        return scoreTotal;
+    const savedPlayer = await response.json();
+    await fetch(
+      `http://localhost:8080/user/addPlayer?userId=${trueUser.userId}&playerId=${savedPlayer.id}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
       }
+    );
+    await fetchUsers();
+    // console.log(savedPlayer);
+    const newUser = trueUser;
+    const newPlayer = player;
+    newPlayer.id = newUser.players.length + 1;
+    newUser.players.push(player);
+    setTrueUser(newUser);
+    // console.log(backendPlayers);
+    // setBackEndPlayers(newPlayers)
+    // console.log(backendPlayers);
+  };
 
-      const userOverallScore = (user)=> { 
-        let scoreTotal = 0
-        user.players.map(player => {
-          let found = footballData.elements.find((apiPlayer) => player.apiid == apiPlayer.id) 
-          console.log(found.total_points)
-          scoreTotal += found.total_points
-          
-        }
-        )
-        return scoreTotal;
-      }
+  const userGWScore = (user) => {
+    let scoreTotal = 0;
+    user.players.map((player) => {
+      let found = footballData.elements.find(
+        (apiPlayer) => player.apiid == apiPlayer.id
+      );
+      console.log(found.total_points);
+      scoreTotal += found.event_points;
+    });
+    return scoreTotal;
+  };
 
-    
-
+  const userOverallScore = (user) => {
+    let scoreTotal = 0;
+    user.players.map((player) => {
+      let found = footballData.elements.find(
+        (apiPlayer) => player.apiid == apiPlayer.id
+      );
+      console.log(found.total_points);
+      scoreTotal += found.total_points;
+    });
+    return scoreTotal;
+  };
 
   const teamNames = {
     1: "Arsenal",
@@ -218,19 +197,37 @@ const HomeContainer = () => {
     20: "Wolverhampton",
   };
 
+
   return (
     <BrowserRouter>
       <header id="header">
-      <img id="logo" src = {logo} alt="Logo" ></img>
+
+        
+        {currentUser ? (
+          <div className="header-logout">
+          <div></div>
+          <img id="logo" src={logo} alt="Logo"></img>
+          <h3 className="logout-btn">
+            <a href="/login" className="nav-link" onClick={logOut}>Logout</a>
+          </h3>
+          </div> 
+        ) :
+        <div className="header-login">
+          <div></div>
+          <img id="logo" src={logo} alt="Logo"></img>
+          <h3>
+              <Link to={"/login"} className="nav-link">Sign in</Link>
+          </h3>
+        </div> 
+        }
+        
+        
+        
 
         <nav className="navbar navbar-expand navbar-dark bg-dark" id="nav">
           {currentUser ? (
             <div className="navbar-nav ms-auto">
-              <h3>
-              <a href="/login" className="nav-link" onClick={logOut}>
-                  Logout
-              </a>
-              </h3>
+              
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
@@ -244,28 +241,11 @@ const HomeContainer = () => {
                 <Link to="/leaderBoard">LeaderBoard</Link>
               </h3>
             </div>
-            
           ) : (
             <div className="navbar-nav ms-auto">
-              <div className="login-buttons">
-              <h3>
-              <Link to={"/login"} className="nav-link">
-                  Login
-                </Link>
-              </h3>
-              <h3>
-              <Link to={"/signup"} className="nav-link">
-                  Sign up
-                </Link>
-              </h3>
-              </div>
-              
               <h3>
                 <Link to="/">Fixtures</Link>
               </h3>
-              {/* <h3>
-                <Link to="/team">Team</Link>
-              </h3> */}
               <h3>
                 <Link to="/stats">Stats</Link>
               </h3>
@@ -277,54 +257,70 @@ const HomeContainer = () => {
         </nav>
       </header>
 
-                <Routes> 
-                    <Route path="/" element= {
-                    <Fixtures fixtures={fixtures} data={footballData} teamNames={teamNames} playerNames={playerNames} loading={loading}/>
-                    }/>
-                    <Route path="/team" element= {
-                    <Team users={users} 
-                    playersList={footballData.elements} 
-                    removePlayer={removePlayer}
-                    data ={footballData}
-                    createPlayer = {createPlayer}
-                    backendPlayers = {backendPlayers}
-                    fetchPlayers={fetchPlayers}
-                    setBackEndPlayers={setBackEndPlayers}
-                    alert = {alert}
-                    trueUser = {trueUser}
-                    findTrueUser = {findTrueUser}
-                    teamNames = {teamNames}
-                    userGWScore = {userGWScore}
-                    userOverallScore = {userOverallScore}
-                    />
-                    }/>
-                    <Route path="/leaderboard" element= {
-                    <LeaderBoard users ={users}
-                    data ={footballData}
-                    userGWScore = {userGWScore}
-                    userOverallScore = {userOverallScore}
-                    
-                    />
-                    }/>
-                     <Route path="/stats" element= {
-                    <Stats data = {footballData}/>
-                    }/>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/SignUp" element={<Signup toggleModal={toggleModal}/>} />
-                    
-                </Routes>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Fixtures
+              fixtures={fixtures}
+              data={footballData}
+              teamNames={teamNames}
+              playerNames={playerNames}
+              loading={loading}
+            />
+          }
+        />
+        <Route
+          path="/team"
+          element={
+            <Team
+              users={users}
+              playersList={footballData.elements}
+              removePlayer={removePlayer}
+              data={footballData}
+              createPlayer={createPlayer}
+              backendPlayers={backendPlayers}
+              fetchPlayers={fetchPlayers}
+              setBackEndPlayers={setBackEndPlayers}
+              alert={alert}
+              trueUser={trueUser}
+              findTrueUser={findTrueUser}
+              teamNames={teamNames}
+              userGWScore={userGWScore}
+              userOverallScore={userOverallScore}
+            />
+          }
+        />
+        <Route
+          path="/leaderboard"
+          element={
+            <LeaderBoard
+              users={users}
+              data={footballData}
+              userGWScore={userGWScore}
+              userOverallScore={userOverallScore}
+            />
+          }
+        />
+        <Route path="/stats" element={<Stats data={footballData} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/SignUp" element={<Signup toggleModal={toggleModal} />} />
+      </Routes>
 
-      {modal && (<div className="modal">
+      {modal && (
+        <div className="modal">
           <div onClick={toggleModal} className="overlay">
             <div className="modal-content">
               <h2>Account Created!</h2>
-              <button className="close-modal" onClick={toggleModal}>X</button>
+              <button className="close-modal" onClick={toggleModal}>
+                X
+              </button>
             </div>
           </div>
-        </div>)}
+        </div>
+      )}
     </BrowserRouter>
   );
 };
-
 
 export default HomeContainer;
