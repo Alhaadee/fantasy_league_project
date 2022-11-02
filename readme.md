@@ -12,7 +12,7 @@ Users are able to:
 * View information of past and upcoming fixtures.
 * Search for players and find their detailed statistics.
 
-This was repository includes a RESTful API developed with spring boot and secured with JWT as well as a website created with react. 
+This repository includes a RESTful API developed with spring boot and secured with JWT as well as a website that was created with react.  The Data of users and the football players is stored locally using a Postgresql database.
 
 The [fantasy premier league api](https://fantasy.premierleague.com/api/bootstrap-static/) was used to source all football data.
 
