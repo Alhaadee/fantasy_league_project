@@ -44,4 +44,4 @@ Below are demos of some of our webpages
 ![statistics](Screenshots/loginPage.png)
 
 ### Team 
-![statistics](Screenshots/teamPage.png)
+![statistics](Screenshots/TeamPage.png)
