@@ -24,3 +24,24 @@ The [fantasy premier league api](https://fantasy.premierleague.com/api/bootstrap
 2. Run the application in `/backend/fantasy-league-api` 
 3. Run `npm init` and `npm start` in the command line in `/frontend/fantasy-league`
 4. A webpage should open in your browser at local host 3000
+
+
+## Website Preview
+
+Below are demos of some of our webpages
+
+### Home 
+
+![homepage](Screenshots/HomePage.png)
+
+### Statistics 
+
+![statistics](Screenshots/statisticsPage.png)
+
+
+### login 
+
+![statistics](Screenshots/loginPage.png)
+
+### Team 
+![statistics](Screenshots/teamPage.png)
